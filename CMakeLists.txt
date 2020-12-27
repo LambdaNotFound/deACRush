@@ -56,7 +56,7 @@ set(SOURCE_CORE
     # ProblemSet/Stack.cpp
     # ProblemSet/String.cpp
     # ProblemSet/Tree.cpp
-    # ProblemSet/TwoPointers.cpp
+    ProblemSet/TwoPointers.cpp
     # ProblemSet/UnionFind.cpp
 )
 add_library(Core ${SOURCE_CORE})
