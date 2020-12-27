@@ -19,28 +19,25 @@ public:
 /*
  * 170. Two Sum III - Data structure design
  *
- * delta == value - key => count > 1
- *
  * i. HashMap<num, count>
- * ii. unordered_multiset<int>
  */
 public:
     class TwoSum {
     public:
         void add(int number) {
-            ++hashMap[number];
+            ++m[number];
         }
         bool find(int value) {
-            for (auto a : hashMap) {
+            for (auto a : m) {
                 int t = value - a.first;
-                if ((t != a.first && hashMap.count(t)) || (t == a.first && a.second > 1)) {
+                if ((t != a.first && m.count(t)) || (t == a.first && a.second > 1)) {
                     return true;
                 }
             }
             return false;
         }
     private:
-        unordered_map<int, int> hashMap;
+        unordered_map<int, int> m;
     };
 
 
