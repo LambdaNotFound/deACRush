@@ -45,7 +45,7 @@ set(SOURCE_CORE
     # ProblemSet/Graph.cpp
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
-    # ProblemSet/Heap.cpp
+    ProblemSet/Heap.cpp
     # ProblemSet/Iterator.cpp
     # ProblemSet/LinkedList.cpp
     # ProblemSet/Math.cpp
@@ -73,6 +73,7 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp
     # UnitTest/ProblemSetTest/DynamicProgrammingTest.cpp
     UnitTest/ProblemSet/HashMap.cpp
+    UnitTest/ProblemSet/Heap.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp
