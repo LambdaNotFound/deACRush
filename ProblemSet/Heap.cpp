@@ -8,6 +8,7 @@ ListNode* Heap::mergeKLists(vector<ListNode*>& lists) {
     auto cmp = [](ListNode*& a, ListNode*& b) {
                    return a->val > b->val;
                };
+
     priority_queue<ListNode*, vector<ListNode*>, decltype(cmp) > heap(cmp);
 
     for (auto node : lists)
