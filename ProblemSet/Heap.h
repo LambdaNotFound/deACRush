@@ -29,9 +29,18 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists);
 
 /*
+ * 347. Top K Frequent Elements
+ *
+ * i. HashMap + Heap
+ *
+ */
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k);
+
+/*
  * 703. Kth Largest Element in a Stream
  *
- * i. Max-Heap
+ * i. Min-Heap
  *
  */
 public:
@@ -40,8 +49,9 @@ public:
         KthLargest(int k, vector<int>& nums);
 
         int add(int val);
+
     private:
-        priority_queue<int, vector<int>, greater<int>> q;
+        priority_queue<int, vector<int>, greater<int>> heap;
         int capacity;
     };
 
