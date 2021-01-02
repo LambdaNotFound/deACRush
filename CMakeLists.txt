@@ -27,7 +27,6 @@ set(SOURCE_CORE
     # Algorithm/Graph/UnionFind.cpp
     # Algorithm/RandomizedAlgorithm/RandomizedAlgorithm.cpp
     # Algorithm/Sorting/InsertionSort.cpp
-    # Algorithm/Sorting/MergeSort.cpp
     # Algorithm/Sorting/QuickSort.cpp
     # Algorithm/Sorting/TopologicalSort.cpp
     # Algorithm/StringMatching/KMP.cpp
@@ -40,7 +39,7 @@ set(SOURCE_CORE
     # ProblemSet/BinarySearch.cpp
     # ProblemSet/BinarySearchTree.cpp
     # ProblemSet/BFS.cpp
-    # ProblemSet/DivideAndConquer.cpp
+    ProblemSet/DivideAndConquer.cpp
     # ProblemSet/DynamicProgramming.cpp
     # ProblemSet/Graph.cpp
     # ProblemSet/Greedy.cpp
@@ -72,8 +71,9 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/BinaryTreeTest.cpp
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp
     # UnitTest/ProblemSetTest/DynamicProgrammingTest.cpp
-    UnitTest/ProblemSet/HashMap.cpp
-    UnitTest/ProblemSet/Heap.cpp
+    UnitTest/HashMap.cpp
+    UnitTest/Heap.cpp
+    UnitTest/MergeSort.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp
@@ -81,4 +81,3 @@ set(SOURCE_TESTS
 )
 add_executable(UnitTest ${SOURCE_TESTS} ${SOURCE_CORE})
 target_link_libraries(UnitTest gtest gtest_main)
-

@@ -20,6 +20,8 @@
 #include <unordered_set> // hash table with O(1) lookup
 #include <set> // avl tree with O(lgn) lookup, also sort items in order
 
+#include <memory>
+
 #include <string>
 #include <sstream>
 
@@ -35,6 +37,10 @@
 std::ostream& cout_red(const std::string &msg);
 
 std::ostream& cout_green(const std::string &msg);
+
+std::ostream& cout_blue(const std::string &msg);
+
+std::ostream& cout_magenta(const std::string &msg);
 
 std::ostream& cout_cyan(const std::string &msg);
 

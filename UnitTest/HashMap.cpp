@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "../../ProblemSet/HashMap.h"
+#include "../ProblemSet/HashMap.h"
 
 using namespace std;
 
