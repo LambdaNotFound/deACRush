@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "../../ProblemSet/Heap.h"
+#include "../ProblemSet/Heap.h"
 
 using namespace std;
 
