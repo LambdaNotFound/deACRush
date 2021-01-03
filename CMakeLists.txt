@@ -45,6 +45,7 @@ set(SOURCE_CORE
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
     ProblemSet/Heap.cpp
+    ProblemSet/Monotone.cpp
     # ProblemSet/Iterator.cpp
     # ProblemSet/LinkedList.cpp
     # ProblemSet/Math.cpp
