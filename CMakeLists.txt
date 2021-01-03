@@ -45,6 +45,7 @@ set(SOURCE_CORE
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
     ProblemSet/Heap.cpp
+    ProblemSet/Monotone.cpp
     # ProblemSet/Iterator.cpp
     # ProblemSet/LinkedList.cpp
     # ProblemSet/Math.cpp
@@ -60,6 +61,12 @@ set(SOURCE_CORE
 )
 add_library(Core ${SOURCE_CORE})
 
+set(SOURCE_READING
+    include/StandardLibrary.cpp
+    ProgrammingPearls/CrackingTheOyster.cpp
+)
+add_library(Classic ${SOURCE_READING})
+
 add_subdirectory(google_tests)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 set(SOURCE_TESTS
@@ -71,6 +78,7 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/BinaryTreeTest.cpp
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp
     # UnitTest/ProblemSetTest/DynamicProgrammingTest.cpp
+    UnitTest/BitManipulation.cpp
     UnitTest/HashMap.cpp
     UnitTest/Heap.cpp
     UnitTest/MergeSort.cpp
@@ -79,5 +87,5 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/StackTest.cpp
     # UnitTest/ProblemSetTest/StringTest.cpp
 )
-add_executable(UnitTest ${SOURCE_TESTS} ${SOURCE_CORE})
+add_executable(UnitTest ${SOURCE_TESTS} ${SOURCE_CORE} ${SOURCE_READING})
 target_link_libraries(UnitTest gtest gtest_main)

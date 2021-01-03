@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <assert.h>
 
+#include <cstring>
 #include <climits>
 #include <numeric>
 #include <random>
@@ -19,6 +20,8 @@
 #include <unordered_map>
 #include <unordered_set> // hash table with O(1) lookup
 #include <set> // avl tree with O(lgn) lookup, also sort items in order
+
+#include <bitset>
 
 #include <memory>
 

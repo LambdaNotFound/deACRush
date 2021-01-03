@@ -3,6 +3,8 @@
 
 #include "StandardLibrary.h"
 
+#include "ListNode.h"
+
 using namespace std;
 
 /**
@@ -55,8 +57,95 @@ void merge_sort_bottom_up(ForwardIt first, ForwardIt last) {
 }
 
 // linked list top-down approach
+ListNode* merge_two_lists(ListNode* l1, ListNode* l2) {
+    if (!l1)
+        return l2;
+    if (!l2)
+        return l1;
+
+    if (l1->val < l2->val) {
+        l1->next = merge_two_lists(l1->next, l2);
+        return l1;
+    } else {
+        l2->next = merge_two_lists(l1, l2->next);
+        return l2;
+    }
+}
+
+ListNode* merge_sort_list_top_down(ListNode* head) {
+    if (!head || !head->next)
+        return head;
+
+    ListNode *fast = head, *slow = head, *pre = head;
+    while (fast && fast->next) {
+        pre = slow;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    pre->next = nullptr;
+
+    return merge_two_lists(merge_sort_list_top_down(head), merge_sort_list_top_down(slow));
+}
 
 // linked list bottom-up approach
+pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
+    ListNode dummy(0), *res = &dummy;
+    while (l1 && l2) {
+        if (l1->val <= l2->val) {
+            res->next = l1;
+            l1 = l1->next;
+        } else {
+            res->next = l2;
+            l2 = l2->next;
+        }
+        res = res->next;
+    }
+    if (l1)
+        res->next = l1;
+    else if (l2)
+        res->next = l2;
+    while (res->next)
+        res = res->next;
+    return make_pair(dummy.next, res); // return the head & tail of merged list
+}
+
+ListNode* split(ListNode* head, int n) {
+    while (--n && head)
+        head = head->next;
+    ListNode* rest = head ? head->next : nullptr;
+    if (head)
+        head->next = nullptr;
+    return rest;
+}
+
+ListNode* merge_sort_list_bottom_up(ListNode* head) {
+    if (!head || !head->next)
+        return head;
+
+    int len = 1;
+    ListNode* cur = head;
+    while (cur = cur->next)
+        ++len;
+
+    ListNode dummy(0);
+    dummy.next = head;
+    ListNode *l, *r, *tail;
+    for (int width = 1; width < len; width *= 2) {
+        cur = dummy.next;
+        tail = &dummy;
+
+        while (cur) {
+            l = cur;
+            r = split(l, width);
+            cur = split(r, width);
+            auto merged = merge2lists(l, r);
+            tail->next = merged.first;
+            tail = merged.second;
+        }
+    }
+
+    return dummy.next;
+}
 
 // debug
 template <typename ForwardIt>
