@@ -88,6 +88,10 @@ ListNode* merge_sort_list_top_down(ListNode* head) {
 }
 
 // linked list bottom-up approach
+
+/*
+ * return the head & tail of merged list
+ */
 pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
     ListNode dummy(0), *res = &dummy;
     while (l1 && l2) {
@@ -106,9 +110,12 @@ pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
         res->next = l2;
     while (res->next)
         res = res->next;
-    return make_pair(dummy.next, res); // return the head & tail of merged list
+    return make_pair(dummy.next, res);
 }
 
+/*
+ * return pointer to rest of list after split
+ */
 ListNode* split(ListNode* head, int n) {
     while (--n && head)
         head = head->next;
@@ -129,16 +136,16 @@ ListNode* merge_sort_list_bottom_up(ListNode* head) {
 
     ListNode dummy(0);
     dummy.next = head;
-    ListNode *l, *r, *tail;
+    ListNode *tail;
     for (int width = 1; width < len; width *= 2) {
         cur = dummy.next;
         tail = &dummy;
 
         while (cur) {
-            l = cur;
-            r = split(l, width);
-            cur = split(r, width);
-            auto merged = merge2lists(l, r);
+            ListNode* left = cur;
+            ListNode* right = split(left, width);
+            cur = split(right, width);
+            auto merged = merge2lists(left, right);
             tail->next = merged.first;
             tail = merged.second;
         }

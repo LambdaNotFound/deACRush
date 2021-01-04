@@ -93,3 +93,32 @@ TEST(merge_sort_top_down, MergeSort) {
     merge_sort_top_down_debug<vector<int>::iterator>(input.begin(), input.end());
     EXPECT_EQ(input, expected);
 }
+
+TEST(merge_sort_list_bottom_up, MergeSortLinkedList) {
+    ListNode list1[100];
+    for (int i = 0; i < 99; ++i) {
+        list1[i].val = 99 - i;
+        list1[i].next = &list1[i + 1];
+    }
+    list1[99].val = 0;
+
+    ListNode* res = merge_sort_list_bottom_up(&list1[0]);
+    for (auto [p, i] = std::tuple{res, 0}; p != nullptr; p = p->next) {
+        EXPECT_EQ(p->val, i++);
+    }
+
+    ListNode list2[2];
+    list2[0].val = 1; list2[0].next = &list2[1];
+    list2[1].val = 0;
+    res = merge_sort_list_bottom_up(&list2[0]);
+    for (auto [p, i] = std::tuple{res, 0}; p != nullptr; p = p->next) {
+        EXPECT_EQ(p->val, i++);
+    }
+
+    ListNode list3[1];
+    list3[0].val = 0;
+    res = merge_sort_list_bottom_up(&list3[0]);
+    for (auto [p, i] = std::tuple{res, 0}; p != nullptr; p = p->next) {
+        EXPECT_EQ(p->val, i++);
+    }
+}
