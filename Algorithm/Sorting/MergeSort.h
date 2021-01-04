@@ -147,6 +147,71 @@ ListNode* merge_sort_list_bottom_up(ListNode* head) {
     return dummy.next;
 }
 
+/*
+ * return the head & tail of merged list
+ */
+pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
+    ListNode dummy(0), *res = &dummy;
+    while (l1 && l2) {
+        if (l1->val <= l2->val) {
+            res->next = l1;
+            l1 = l1->next;
+        } else {
+            res->next = l2;
+            l2 = l2->next;
+        }
+        res = res->next;
+    }
+    if (l1)
+        res->next = l1;
+    else if (l2)
+        res->next = l2;
+    while (res->next)
+        res = res->next;
+    return make_pair(dummy.next, res);
+}
+
+/*
+ * return pointer to rest of list after split
+ */
+ListNode* split(ListNode* head, int n) {
+    while (--n && head)
+        head = head->next;
+    ListNode* rest = head ? head->next : nullptr;
+    if (head)
+        head->next = nullptr;
+    return rest;
+}
+
+ListNode* merge_sort_list_bottom_up(ListNode* head) {
+    if (!head || !head->next)
+        return head;
+
+    int len = 1;
+    ListNode* cur = head;
+    while (cur = cur->next)
+        ++len;
+
+    ListNode dummy(0);
+    dummy.next = head;
+    ListNode *tail;
+    for (int width = 1; width < len; width *= 2) {
+        cur = dummy.next;
+        tail = &dummy;
+
+        while (cur) {
+            ListNode* left = cur;
+            ListNode* right = split(left, width);
+            cur = split(right, width);
+            auto merged = merge2lists(left, right);
+            tail->next = merged.first;
+            tail = merged.second;
+        }
+    }
+
+    return dummy.next;
+}
+
 // debug
 template <typename ForwardIt>
 void merge_debug(ForwardIt first, ForwardIt mid, ForwardIt last) {
