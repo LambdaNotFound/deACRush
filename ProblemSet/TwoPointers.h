@@ -30,6 +30,7 @@ public:
 
 public:
     vector<int> twoSumBinarySearch(vector<int>& numbers, int target);
+
 };
 
 #endif //ACRUSH_TWOPOINTERS_H

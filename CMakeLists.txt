@@ -10,6 +10,17 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # set(CMAKE_CXX_FLAGS "-std=libc++")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libstdc++")
+
+set(CMAKE_CXX_FLAGS "-g")
+
+## StackOverflow: flags-to-enable-thorough-and-verbose-g-warnings
+set(CMAKE_CXX_FLAGS "-pedantic -Wall -Wextra -Wno-unused -Wundef")
+set(CMAKE_CXX_FLAGS "-Wold-style-cast -Wcast-align -Wcast-qual -Wlogical-op")
+set(CMAKE_CXX_FLAGS "-Wmissing-declarations -Wctor-dtor-privacy -Woverloaded-virtual")
+
+## make warning into error
+set(CMAKE_CXX_FLAGS "-Werror")
+
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -gdwarf-3")
 
 include_directories(include)
@@ -54,6 +65,7 @@ set(SOURCE_CORE
     # ProblemSet/Stack.cpp
     # ProblemSet/String.cpp
     # ProblemSet/Tree.cpp
+    ProblemSet/SlidingWindow.cpp
     ProblemSet/TwoPointers.cpp
     # ProblemSet/UnionFind.cpp
 )
@@ -81,6 +93,7 @@ set(SOURCE_TESTS
     UnitTest/Heap.cpp
     UnitTest/MathTricks.cpp
     UnitTest/MergeSort.cpp
+    UnitTest/SlidingWindow.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp
