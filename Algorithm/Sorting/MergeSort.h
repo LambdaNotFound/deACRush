@@ -89,8 +89,6 @@ ListNode* merge_sort_list_top_down(ListNode* head) {
 
 // linked list bottom-up approach
 
-/*
- * return the head & tail of merged list
 // return the head & tail of merged list
 pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
     ListNode dummy(0), *res = &dummy;
