@@ -91,7 +91,7 @@ ListNode* merge_sort_list_top_down(ListNode* head) {
 
 /*
  * return the head & tail of merged list
- */
+// return the head & tail of merged list
 pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
     ListNode dummy(0), *res = &dummy;
     while (l1 && l2) {
@@ -113,9 +113,7 @@ pair<ListNode*, ListNode*> merge2lists(ListNode* l1, ListNode* l2) {
     return make_pair(dummy.next, res);
 }
 
-/*
- * return pointer to rest of list after split
- */
+// return pointer to rest of list after split
 ListNode* split(ListNode* head, int n) {
     while (--n && head)
         head = head->next;
