@@ -1,19 +1,27 @@
 cmake_minimum_required(VERSION 3.17)
 project(acrush)
 
+# set(CMAKE_C_COMPILER /usr/local/Cellar/gcc/10.2.0/bin/gcc-10)
+# set(CMAKE_CXX_COMPILER /usr/local/Cellar/gcc/10.2.0/bin/c++-10)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_CXX_FLAGS "-std=libc++")
-## turn on debugging
+# set(CMAKE_CXX_FLAGS "-std=libc++")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libstdc++")
+
 set(CMAKE_CXX_FLAGS "-g")
+
 ## StackOverflow: flags-to-enable-thorough-and-verbose-g-warnings
 set(CMAKE_CXX_FLAGS "-pedantic -Wall -Wextra -Wno-unused -Wundef")
 set(CMAKE_CXX_FLAGS "-Wold-style-cast -Wcast-align -Wcast-qual -Wlogical-op")
 set(CMAKE_CXX_FLAGS "-Wmissing-declarations -Wctor-dtor-privacy -Woverloaded-virtual")
+
 ## make warning into error
 set(CMAKE_CXX_FLAGS "-Werror")
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -gdwarf-3")
 
 include_directories(include)
 
@@ -45,6 +53,7 @@ set(SOURCE_CORE
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
     ProblemSet/Heap.cpp
+    ProblemSet/MathTricks.cpp
     ProblemSet/Monotone.cpp
     # ProblemSet/Iterator.cpp
     # ProblemSet/LinkedList.cpp
@@ -56,6 +65,7 @@ set(SOURCE_CORE
     # ProblemSet/Stack.cpp
     # ProblemSet/String.cpp
     # ProblemSet/Tree.cpp
+    ProblemSet/SlidingWindow.cpp
     ProblemSet/TwoPointers.cpp
     # ProblemSet/UnionFind.cpp
 )
@@ -81,7 +91,9 @@ set(SOURCE_TESTS
     UnitTest/BitManipulation.cpp
     UnitTest/HashMap.cpp
     UnitTest/Heap.cpp
+    UnitTest/MathTricks.cpp
     UnitTest/MergeSort.cpp
+    UnitTest/SlidingWindow.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp
