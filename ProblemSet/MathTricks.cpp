@@ -1,5 +1,71 @@
 #include "MathTricks.h"
 
+// 6. ZigZag Conversion
+string MathTricks::convert(string s, int numRows) {
+    if (numRows <= 1)
+        return s;
+
+    string res;
+    int offsetVertical = 2 * numRows - 2;
+    for (int i = 0; i < numRows; ++i)
+        for (int j = i; j < s.size(); j += offsetVertical) {
+            res += s[j];
+            int offsetDiagonal = j + offsetVertical - 2 * i;
+            if (i != 0 && i != numRows - 1 && offsetDiagonal < s.size()) // excluding first and last rows
+                res += s[offsetDiagonal];
+        }
+
+    return res;
+}
+
+string MathTricks::convert2(string s, int numRows) {
+    if (numRows <= 1)
+        return s;
+
+    string res;
+    vector<string> vec(numRows);
+    for (int i = 0; i < s.size();) {
+        for (int pos = 0; pos < numRows && i < s.size(); ++pos)
+            vec[pos] += s[i++];
+        for (int pos = numRows - 2; pos > 0 && i < s.size(); --pos) // excluding first row and last row
+            vec[pos] += s[i++];
+    }
+    for (auto &a: vec)
+        res += a;
+
+    return res;
+}
+
+// 31. Next Permutation
+void MathTricks::nextPermutation(vector<int>& nums) {
+    int n = nums.size(), i = n - 2, j = n - 1;
+    while (i >= 0 && nums[i] >= nums[i + 1])
+        --i;
+    if (i >= 0) {
+        while (nums[j] <= nums[i])
+            --j;
+        swap(nums[i], nums[j]);
+    }
+    reverse(nums.begin() + i + 1, nums.end());
+}
+
+// 60. Permutation Sequence
+string MathTricks::getPermutation(int n, int k) {
+    string res;
+    string num = "123456789";
+    vector<int> f(n, 1);
+    for (int i = 1; i < n; ++i)
+        f[i] = f[i - 1] * i;
+    --k;
+    for (int i = n; i >= 1; --i) {
+        int j = k / f[i - 1];
+        k %= f[i - 1];
+        res.push_back(num[j]);
+        num.erase(j, 1);
+    }
+    return res;
+}
+
 // 118. Pascal's Triangle
 vector<vector<int>> MathTricks::generate(int numRows) {
     vector<vector<int>> res(numRows, vector<int>());

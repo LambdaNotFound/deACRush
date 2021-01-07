@@ -64,8 +64,8 @@ set(SOURCE_CORE
     # ProblemSet/Set.cpp
     # ProblemSet/Stack.cpp
     # ProblemSet/String.cpp
-    # ProblemSet/Tree.cpp
     ProblemSet/SlidingWindow.cpp
+    ProblemSet/Tree.cpp
     ProblemSet/TwoPointers.cpp
     # ProblemSet/UnionFind.cpp
 )
