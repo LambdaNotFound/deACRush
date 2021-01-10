@@ -28,7 +28,8 @@ include_directories(include)
 add_executable(acrush main.cpp)
 
 set(SOURCE_CORE
-    include/StandardLibrary.cpp
+    include/Utility.cpp
+    Design/Iterator.cpp
     # Algorithm/BinarySearch/BinarySearch.cpp
     # Algorithm/ComputationalGeometry/SweepLine.cpp
     # Algorithm/DivideAndConquer/DivideAndConquer.cpp
@@ -43,7 +44,7 @@ set(SOURCE_CORE
     # DataStructure/BinaryTree.cpp
     # ModernCpp/Basic.cpp
     # ProblemSet/Array.cpp
-    # ProblemSet/Backtracking.cpp
+    ProblemSet/Backtracking.cpp
     # ProblemSet/BinarySearch.cpp
     # ProblemSet/BinarySearchTree.cpp
     # ProblemSet/BFS.cpp
@@ -72,18 +73,19 @@ set(SOURCE_CORE
 add_library(Core ${SOURCE_CORE})
 
 set(SOURCE_READING
-    include/StandardLibrary.cpp
     ProgrammingPearls/CrackingTheOyster.cpp
 )
 add_library(Classic ${SOURCE_READING})
 
 add_subdirectory(google_tests)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 set(SOURCE_TESTS
     # UnitTest/AlgorithmTest/BinarySearchTest.cpp
     # UnitTest/AlgorithmTest/SortingTest.cpp
     # UnitTest/DataStructureTest/BinarySearchTreeIteratorTest.cpp
     # UnitTest/ProblemSetTest/ArrayTest.cpp
+    UnitTest/Backtracking.cpp
     # UnitTest/ProblemSetTest/BFSTest.cpp
     # UnitTest/ProblemSetTest/BinaryTreeTest.cpp
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp
@@ -100,4 +102,4 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/StringTest.cpp
 )
 add_executable(UnitTest ${SOURCE_TESTS} ${SOURCE_CORE} ${SOURCE_READING})
-target_link_libraries(UnitTest gtest gtest_main)
+target_link_libraries(UnitTest gtest gtest_main gmock gmock_main)

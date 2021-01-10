@@ -36,17 +36,4 @@
 
 #include <optional>
 
-// console log in color
-std::ostream& cout_red(const std::string &msg);
-
-std::ostream& cout_green(const std::string &msg);
-
-std::ostream& cout_blue(const std::string &msg);
-
-std::ostream& cout_magenta(const std::string &msg);
-
-std::ostream& cout_cyan(const std::string &msg);
-
-// ToDo: helper function to print array, linked list, tree and graph etc.
-
 #endif //ACRUSH_STANDARDLIBRARY_H
