@@ -12,7 +12,8 @@ class Backtracking {
  * Given a collection of distinct integers, return all possible permutations.
  *
  * i. Backtracking
- * ii. BFS
+ * ii. BFS <= LIKE
+ * iii. Swap
  */
 public:
     vector<vector<int>> permute(vector<int>& nums);
@@ -22,17 +23,22 @@ private:
 public:
     vector<vector<int> > permuteBFS(vector<int>& nums);
 
-    /*
-     * 47. Permutations II
-     *
-     * Given a collection of numbers that might contain duplicates, return all possible unique permutations.
-     *
-     * i. Backtracking
-     */
+public:
+    vector<vector<int>> permuteSwap(vector<int>& nums);
+private:
+    void permuteSwapHelper(vector<int>& nums, int start, vector<vector<int>>& res);
+
+/*
+ * 47. Permutations II
+ *
+ * Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+ *
+ * i. Backtracking
+ */
 public:
     vector<vector<int>> permuteUnique(vector<int>& nums);
 private:
-    void permuteUniqueHelper(vector<int> num, int i, int j, vector<vector<int>> &res);
+    void permuteUniqueHelper(vector<int>& nums, int level, vector<bool>& visited, vector<int>& out, vector<vector<int>>& res);
 
 };
 

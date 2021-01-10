@@ -29,8 +29,7 @@ add_executable(acrush main.cpp)
 
 set(SOURCE_CORE
     include/Utility.cpp
-    Design/Iterator.cpp
-    # Algorithm/BinarySearch/BinarySearch.cpp
+    Algorithm/Search/BinarySearch.cpp
     # Algorithm/ComputationalGeometry/SweepLine.cpp
     # Algorithm/DivideAndConquer/DivideAndConquer.cpp
     # Algorithm/Graph/UnionFind.cpp
@@ -40,12 +39,13 @@ set(SOURCE_CORE
     # Algorithm/Sorting/TopologicalSort.cpp
     # Algorithm/StringMatching/KMP.cpp
     # Algorithm/Tree/TreeTraversal.cpp
+    Design/Iterator.cpp
     # DataStructure/BinarySearchTreeIterator.cpp
     # DataStructure/BinaryTree.cpp
     # ModernCpp/Basic.cpp
     # ProblemSet/Array.cpp
     ProblemSet/Backtracking.cpp
-    # ProblemSet/BinarySearch.cpp
+    ProblemSet/BinarySearch.cpp
     # ProblemSet/BinarySearchTree.cpp
     # ProblemSet/BFS.cpp
     ProblemSet/DivideAndConquer.cpp
@@ -86,6 +86,7 @@ set(SOURCE_TESTS
     # UnitTest/DataStructureTest/BinarySearchTreeIteratorTest.cpp
     # UnitTest/ProblemSetTest/ArrayTest.cpp
     UnitTest/Backtracking.cpp
+    UnitTest/BinarySearch.cpp
     # UnitTest/ProblemSetTest/BFSTest.cpp
     # UnitTest/ProblemSetTest/BinaryTreeTest.cpp
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp

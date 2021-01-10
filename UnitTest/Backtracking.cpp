@@ -16,4 +16,17 @@ TEST(L46Permutations, Backtracking) {
 
     result = sln.permuteBFS(input);
     EXPECT_THAT(result, ::testing::UnorderedElementsAreArray(expected));
+
+    result = sln.permuteSwap(input);
+    EXPECT_THAT(result, ::testing::UnorderedElementsAreArray(expected));
+}
+
+TEST(L47PermutationsII, Backtracking) {
+    Backtracking sln;
+
+    vector<int> input = { 3, 3, 0, 3 };
+    vector<vector<int> > expected = { { 0, 3, 3, 3 }, { 3, 0, 3, 3 }, { 3, 3, 0, 3 }, {3, 3, 3, 0 } };
+
+    vector<vector<int> > result = sln.permuteUnique(input);
+    EXPECT_EQ(result, expected);
 }
