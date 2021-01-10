@@ -17,15 +17,7 @@ class MathTricks {
  * And then read line by line: "PAHNAPLSIIGYIR"
  *
  * Write the code that will take a string and make this conversion given a number of rows:
- * string convert(string s, int numRows);
- *
- * Example 1:
- * Input: s = "PAYPALISHIRING", numRows = 3
- * Output: "PAHNAPLSIIGYIR"
- * Explanation:
- * P   A   H   N   <- first row
- * A P L S I I G
- * Y   I   R       <- last row
+ *     string convert(string s, int numRows);
  *
  * Example 2:
  * Input: s = "PAYPALISHIRING", numRows = 4
@@ -36,17 +28,22 @@ class MathTricks {
  * Y A   H R
  * P     I         <- last row
  *
- * i. Math: for each row, the vertical offset is: (2 * numRows - 2)
- * for each row excluding first row and last row, the diagonal offset is: (2 * numRows - 2 - 2i)
- *
- * ii. use an array of string of size numRows to simulate the process <= LIKE!!
+ * i. use an array of string of size numRows to simulate the process <= LIKE!!
  *     vector<string> vec(numRows); ... vec[pos] += s[i++];
+ *     v[0] P I N
+ *     v[1] A L S I G
+ *     v[2] Y A H R
+ *     v[3] P I
+ *
+ * ii. Math: for each row, the vertical offset is: (2 * numRows - 2)
+ *           for each row excluding first row and last row, the diagonal offset is: (2 * numRows - 2 - 2i)
+ *
  */
 public:
     string convert(string s, int numRows);
 
 public:
-    string convert2(string s, int numRows);
+    string convertMath(string s, int numRows);
 
 /*
  * 31. Next Permutation

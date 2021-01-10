@@ -6,23 +6,6 @@ string MathTricks::convert(string s, int numRows) {
         return s;
 
     string res;
-    int offsetVertical = 2 * numRows - 2;
-    for (int i = 0; i < numRows; ++i)
-        for (int j = i; j < s.size(); j += offsetVertical) {
-            res += s[j];
-            int offsetDiagonal = j + offsetVertical - 2 * i;
-            if (i != 0 && i != numRows - 1 && offsetDiagonal < s.size()) // excluding first and last rows
-                res += s[offsetDiagonal];
-        }
-
-    return res;
-}
-
-string MathTricks::convert2(string s, int numRows) {
-    if (numRows <= 1)
-        return s;
-
-    string res;
     vector<string> vec(numRows);
     for (int i = 0; i < s.size();) {
         for (int pos = 0; pos < numRows && i < s.size(); ++pos)
@@ -32,6 +15,23 @@ string MathTricks::convert2(string s, int numRows) {
     }
     for (auto &a: vec)
         res += a;
+
+    return res;
+}
+
+string MathTricks::convertMath(string s, int numRows) {
+    if (numRows <= 1)
+        return s;
+
+    string res;
+    int offsetVertical = 2 * numRows - 2;
+    for (int i = 0; i < numRows; ++i)
+        for (int j = i; j < s.size(); j += offsetVertical) {
+            res += s[j];
+            int offsetDiagonal = j + offsetVertical - 2 * i;
+            if (i != 0 && i != numRows - 1 && offsetDiagonal < s.size()) // excluding first and last rows
+                res += s[offsetDiagonal];
+        }
 
     return res;
 }
