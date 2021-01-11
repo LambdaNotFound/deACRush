@@ -59,11 +59,16 @@ public:
  *
  * STL: next_permutation()
  *
- * 1. Find the largest index k such that nums[k] < nums[k + 1]. If no such index exists, just reverse nums and done.
- * 2. Find the largest index l > k such that nums[k] < nums[l].
- * 3. Swap nums[k] and nums[l].
- * 4. Reverse the sub-array nums[k + 1:].
+ * i. Math: start from the end of nums
+ *   a. Find the largest index i such that nums[i] < nums[i + 1]. If no such index exists, just reverse nums.
+ *   b. Find the largest index j > i such that nums[i] < nums[j].
+ *   c. Swap nums[i] and nums[j].
+ *   d. Reverse the sub-array nums[i + 1] to nums[end].
  *
+ *   1  2  7  4  3  1
+ *   1  2< 7  4  3< 1
+ *   1  3 [7  4  2  1]
+ *   1  3  1  2  4  7
  */
 public:
     void nextPermutation(vector<int>& nums);

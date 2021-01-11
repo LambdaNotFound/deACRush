@@ -28,7 +28,8 @@ TreeNode* Tree::invertTree(TreeNode* root) {
 
 /*
 TreeNode* invertTree(TreeNode* root) {
-    if (!root) return NULL;
+    if (!root)
+        return NULL;
     TreeNode *tmp = root->left;
     root->left = invertTree(root->right);
     root->right = invertTree(tmp);
