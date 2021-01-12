@@ -45,6 +45,15 @@ public:
 public:
     string convertMath(string s, int numRows);
 
+/**
+ * Combination and Permutation
+ *
+ * when order doesn't matter, it's combination. Binomial coefficient
+ *
+ * Permutation: exponential. Factorial of a number: n!
+ *
+ */
+
 /*
  * 31. Next Permutation
  *
@@ -87,6 +96,12 @@ public:
  * "312"
  * "321"
  * Given n and k, return the kth permutation sequence.
+ *
+ * i. Math:
+ *       j = k / factorial[n - i];
+ *       k %= factorial[n - i];
+ *       res += num[j];
+ *       num.erase(j, 1);
  *
  */
 public:
