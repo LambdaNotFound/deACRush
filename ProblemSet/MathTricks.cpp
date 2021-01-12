@@ -37,7 +37,24 @@ string MathTricks::convertMath(string s, int numRows) {
 }
 
 // 31. Next Permutation
-void MathTricks::nextPermutation(vector<int>& nums) {
+void MathTricks::nextPermutation(vector<int> &nums) {
+    int i, j, n = nums.size();
+    for (i = n - 2; i >= 0; --i) {
+        if (nums[i] < nums[i + 1]) {
+            for (j = n - 1; j > i; --j)
+                if (nums[i] < nums[j])
+                    break;
+
+            swap(nums[i], nums[j]);
+            reverse(nums.begin() + i + 1, nums.end());
+            return;
+        }
+    }
+    reverse(nums.begin(), nums.end());
+}
+
+/*
+void nextPermutation(vector<int>& nums) {
     int n = nums.size(), i = n - 2, j = n - 1;
     while (i >= 0 && nums[i] >= nums[i + 1])
         --i;
@@ -48,9 +65,29 @@ void MathTricks::nextPermutation(vector<int>& nums) {
     }
     reverse(nums.begin() + i + 1, nums.end());
 }
+ */
 
 // 60. Permutation Sequence
 string MathTricks::getPermutation(int n, int k) {
+    string res;
+    string num = "123456789";
+    vector<int> factorial(n, 1);
+    for (int i = 1; i < n; ++i)  // [0!, 1!, 2!, ..., n - 1!]
+        factorial[i] = factorial[i - 1] * i;
+
+    k -= 1; // Kth is 1 based
+    for (int i = 1; i <= n; ++i) { // [1, n], num's range
+        int j = k / factorial[n - i];
+        k %= factorial[n - i];
+        res += num[j];
+        num.erase(j, 1);
+    }
+
+    return res;
+}
+
+/*
+string getPermutation(int n, int k) {
     string res;
     string num = "123456789";
     vector<int> f(n, 1);
@@ -65,6 +102,7 @@ string MathTricks::getPermutation(int n, int k) {
     }
     return res;
 }
+ */
 
 // 118. Pascal's Triangle
 vector<vector<int>> MathTricks::generate(int numRows) {
