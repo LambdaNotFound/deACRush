@@ -7,7 +7,7 @@ using namespace std;
 
 class TrieNode {
 public:
-    TrieNode(const char c) : m_val(c), m_is_end_of_word(false) {
+    TrieNode(const char c) : m_is_end_of_word(false) {
     }
 
     TrieNode() : TrieNode('\0') {
@@ -16,10 +16,6 @@ public:
     ~TrieNode() {
       for (auto const& [key, value] : m_child_node_map)
         delete value;
-    }
-
-    char value() const {
-        return m_val;
     }
 
     bool isEndOfWord() const {
@@ -37,12 +33,12 @@ public:
             return nullptr;
     }
 
-    void addChild(TrieNode* child) {
-        m_child_node_map[child->value()] = child;
+    void addChild(char c) {
+        m_child_node_map[c] = new TrieNode();
     }
 
-    void removeChild(TrieNode* child) {
-        m_child_node_map.erase(child->value());
+    void removeChild(char c) {
+        m_child_node_map.erase(c);
     }
 
     void markEndOfWord() {
@@ -54,7 +50,6 @@ public:
     }
 
 private:
-    char m_val;
     bool m_is_end_of_word;
     unordered_map<char, TrieNode*> m_child_node_map;
 };
@@ -88,6 +83,7 @@ public:
 
 private:
     TrieNode* m_root;
+    // unique_ptr<TrieNode> m_root;
 };
 
 #endif //ACRUSH_TRIE_H
