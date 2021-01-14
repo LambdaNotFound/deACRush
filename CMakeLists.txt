@@ -39,6 +39,7 @@ set(SOURCE_CORE
     # Algorithm/Sorting/TopologicalSort.cpp
     # Algorithm/StringMatching/KMP.cpp
     # Algorithm/Tree/TreeTraversal.cpp
+    DataStructure/Trie.cpp
     Design/Iterator.cpp
     # DataStructure/BinarySearchTreeIterator.cpp
     # DataStructure/BinaryTree.cpp
