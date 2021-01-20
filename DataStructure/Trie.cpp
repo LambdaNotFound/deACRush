@@ -4,10 +4,8 @@
 void Trie::insert(string word) {
     TrieNode* cur = m_root;
     for (auto const& c : word) {
-        if (!cur->findChild(c)) {
-            TrieNode* tmp = new TrieNode(c);
-            cur->addChild(tmp);
-        }
+        if (!cur->findChild(c))
+            cur->addChild(c);
         cur = cur->findChild(c);
     }
     cur->markEndOfWord();
@@ -40,18 +38,20 @@ bool Trie::deleteWord(string word) {
     TrieNode* cur = m_root;
     stack<TrieNode*> s;
     for (auto const& c: word) {
+        s.push(cur);
         cur = cur->findChild(c);
         if (!cur)
             return false;
-        s.push(cur);
     }
-    cur->unmarkEndOfWord();
 
+    if (!cur->isEndOfWord())
+        return false;
+
+    cur->markEndOfWord();
     if (!cur->hasChild()) {
-        while (!s.empty()) {
+        for (int i = word.size() - 1; i >= 0; --i) {
             TrieNode* tmp = s.top(); s.pop();
-            tmp->removeChild(cur);
-            cur = tmp;
+            tmp->removeChild(word[i]);
             if (tmp->hasChild())
                 break;
         }
