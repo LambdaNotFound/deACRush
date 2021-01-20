@@ -98,6 +98,7 @@ set(SOURCE_TESTS
     UnitTest/MathTricks.cpp
     UnitTest/MergeSort.cpp
     UnitTest/SlidingWindow.cpp
+    UnitTest/Tree.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp
