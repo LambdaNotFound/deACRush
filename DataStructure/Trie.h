@@ -56,7 +56,6 @@ private:
 
 /*
  * 208. Implement Trie (Prefix Tree)
- *
  */
 class Trie {
 public:
@@ -78,7 +77,7 @@ public:
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix);
 
-    /** follow-up: delete a word from the trie **/
+    /** follow-up: delete a word from the trie */
     bool deleteWord(string word);
 
 private:
