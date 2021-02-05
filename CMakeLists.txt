@@ -88,6 +88,7 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/ArrayTest.cpp
     UnitTest/Backtracking.cpp
     UnitTest/BinarySearch.cpp
+    UnitTest/DivideAndConquer.cpp
     # UnitTest/ProblemSetTest/BFSTest.cpp
     # UnitTest/ProblemSetTest/BinaryTreeTest.cpp
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp
