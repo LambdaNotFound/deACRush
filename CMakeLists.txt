@@ -47,6 +47,7 @@ set(SOURCE_CORE
     # ProblemSet/Array.cpp
     ProblemSet/Backtracking.cpp
     ProblemSet/BinarySearch.cpp
+    ProblemSet/BitManipulation.cpp
     # ProblemSet/BinarySearchTree.cpp
     # ProblemSet/BFS.cpp
     ProblemSet/DivideAndConquer.cpp
