@@ -44,6 +44,7 @@ set(SOURCE_CORE
     # DataStructure/BinarySearchTreeIterator.cpp
     # DataStructure/BinaryTree.cpp
     # ModernCpp/Basic.cpp
+    ModernCpp/Hash.cpp
     # ProblemSet/Array.cpp
     ProblemSet/Backtracking.cpp
     ProblemSet/BinarySearch.cpp
