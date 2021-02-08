@@ -52,7 +52,7 @@ set(SOURCE_CORE
     # ProblemSet/BinarySearchTree.cpp
     # ProblemSet/BFS.cpp
     ProblemSet/DivideAndConquer.cpp
-    # ProblemSet/DynamicProgramming.cpp
+    ProblemSet/DynamicProgramming.cpp
     # ProblemSet/Graph.cpp
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
