@@ -90,12 +90,12 @@ set(SOURCE_TESTS
     # UnitTest/ProblemSetTest/ArrayTest.cpp
     UnitTest/Backtracking.cpp
     UnitTest/BinarySearch.cpp
+    UnitTest/BitManipulation.cpp
     UnitTest/DivideAndConquer.cpp
+    UnitTest/DynamicProgramming.cpp
     # UnitTest/ProblemSetTest/BFSTest.cpp
     # UnitTest/ProblemSetTest/BinaryTreeTest.cpp
     # UnitTest/ProblemSetTest/BinarySearchTreeTest.cpp
-    # UnitTest/ProblemSetTest/DynamicProgrammingTest.cpp
-    UnitTest/BitManipulation.cpp
     UnitTest/HashMap.cpp
     UnitTest/Heap.cpp
     UnitTest/MathTricks.cpp
