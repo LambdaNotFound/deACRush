@@ -142,6 +142,55 @@ int DynamicProgramming::minDistanceOptimized(string word1, string word2) {
     return dp[n];
 }
 
+// 139. Word Break
+bool DynamicProgramming::wordBreak(string s, vector<string>& wordDict) {
+    int n = s.size();
+    unordered_set<string> dict(wordDict.cbegin(), wordDict.cend());
+
+    vector<bool> dp(n + 1);
+    for (int i = 1; i <= n; ++i) {
+        if (dict.count(s.substr(0, i)))
+            dp[i] = true;
+        else {
+            for (int j = i - 1; j > 0; --j) {
+                string tmp = s.substr(j, i - j); // len = i - 1 - j + 1
+                if (dp[j] && dict.count(tmp))
+                    dp[i] = true;
+            }
+        }
+    }
+
+    return dp[n];
+}
+
+// 140. Word Break II
+vector<string> DynamicProgramming::wordBreakII(string s, vector<string>& wordDict) {
+    int n = s.size();
+    unordered_set<string> dict(wordDict.cbegin(), wordDict.cend());
+    set<int> wordSizes;
+    for (const auto& w : wordDict)
+        wordSizes.insert(w.size());
+
+    vector<vector<string>> dp(n + 1, vector<string>());
+    for (int i = 1; i <= n; ++i) {
+        string cur = s.substr(0, i);
+        if (dict.count(cur))
+            dp[i].push_back(cur);
+
+        for (int size : wordSizes) {
+            int j = i - size;
+            if (j > 0) {
+                string tmp = s.substr(j, i - j); // len = i - 1 - j + 1
+                if (dp[j].size() && dict.count(tmp))
+                    for (const auto& str : dp[j])
+                        dp[i].push_back(str + " " + tmp);
+            }
+        }
+    }
+
+    return dp[n];
+}
+
 // 70. Climbing Stairs
 int DynamicProgramming::climbStairs(int n) {
     vector<int> dp(n + 1, 0);

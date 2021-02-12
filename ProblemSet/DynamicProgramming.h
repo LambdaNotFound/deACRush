@@ -85,6 +85,18 @@ public:
 public:
     int minDistanceOptimized(string word1, string word2);
 
+/*
+ * 139. Word Break
+ */
+public:
+    bool wordBreak(string s, vector<string>& wordDict);
+
+/*
+ * 140. Word Break II
+ */
+public:
+    vector<string> wordBreakII(string s, vector<string>& wordDict);
+
 /**
  * 2D matrix with value dependents on neighbor cells
  */
