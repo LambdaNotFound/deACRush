@@ -14,3 +14,13 @@ TEST(L169MajorityElement, DivideAndConquer) {
     int result = sln.majorityElement(input1);
     EXPECT_EQ(result, expected);
 }
+
+TEST(L241DifferentWaysToAddParentheses, DivideAndConquer) {
+    DivideAndConquer sln;
+
+    string input1 = "2-1-1";
+    vector<int> expected = { 0, 2 };
+
+    auto result = sln.diffWaysToCompute(input1);
+    EXPECT_EQ(result, expected);
+}
