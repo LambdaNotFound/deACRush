@@ -20,6 +20,7 @@ set(CMAKE_CXX_FLAGS "-Wmissing-declarations -Wctor-dtor-privacy -Woverloaded-vir
 
 ## make warning into error
 set(CMAKE_CXX_FLAGS "-Werror")
+set(CMAKE_CXX_FLAGS "-Wreturn-type")
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -gdwarf-3")
 

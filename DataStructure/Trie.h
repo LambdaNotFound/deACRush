@@ -76,7 +76,7 @@ class WordDictionary {
 public:
     /** Initialize your data structure here. */
     WordDictionary() {
-        root = new TreeNode();
+        root = new TrieNode();
     }
 
     ~WordDictionary() {
@@ -84,13 +84,13 @@ public:
     }
 
     void addWord(string word) {
-        TreeNode* cur = root;
+        TrieNode* cur = root;
         for (char c : word) {
             if (!cur->childNodeMap.count(c))
-                cur->childNodeMap[c] = new TreeNode();
+                cur->childNodeMap[c] = new TrieNode();
             cur = cur->childNodeMap[c];
         }
-        cur->word = word;
+        cur->endOfWord = true;
     }
 
     bool search(string word) {
@@ -98,43 +98,9 @@ public:
     }
 
 private:
-    struct TreeNode {
-        TreeNode() {
-        }
+    bool searchHelper(const string& word, TrieNode* cur);
 
-        ~TreeNode() {
-            for (auto& p : childNodeMap)
-                delete p.second;
-        }
-
-        unordered_map<char, TreeNode*> childNodeMap;
-        string word;
-    };
-
-    bool searchHelper(string& word, TreeNode* cur) {
-        if (word.empty() && !cur->word.empty())
-            return true;
-        else {
-            for (int i = 0; i < word.size(); ++i) {
-                char c = word[i];
-                string next = word.substr(i);
-                if (c != '.') {
-                    if (!cur->childNodeMap.count(c))
-                        return false;
-                    cur->childNodeMap.count(c);
-                    searchHelper(next, cur);
-                } else {
-                    for (auto& p : cur->childNodeMap) {
-                        if (searchHelper(next, p.second))
-                            return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    TreeNode* root;
+    TrieNode* root;
 };
 
 #endif //ACRUSH_TRIE_H

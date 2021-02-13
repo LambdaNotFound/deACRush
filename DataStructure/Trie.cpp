@@ -60,3 +60,25 @@ bool Trie::deleteWord(string word) {
 
     return true;
 }
+
+// 211. Design Add and Search Words Data Structure
+bool WordDictionary::searchHelper(const string& word, TrieNode* cur) {
+    if (word.empty())
+        return cur->endOfWord;
+    else {
+        char c = word[0];
+        string next = word.substr(1);
+        if (c == '.') {
+            for (auto& p : cur->childNodeMap)
+                if (searchHelper(next, p.second))
+                    return true;
+            return false;
+        } else {
+            if (!cur->childNodeMap.count(c))
+                return false;
+            cur = cur->childNodeMap[c];
+            return searchHelper(next, cur);
+        }
+        return false;
+    }
+}
