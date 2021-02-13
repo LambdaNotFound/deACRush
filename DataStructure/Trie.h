@@ -5,32 +5,13 @@
 
 using namespace std;
 
-class TrieNode {
-public:
-    TrieNode(const char c) : endOfWord(false) {
-    }
-
-    TrieNode() : TrieNode('\0') {
+struct TrieNode {
+    TrieNode() : endOfWord(false) {
     }
 
     ~TrieNode() {
       for (auto const& [key, value] : childNodeMap)
         delete value;
-    }
-
-    bool isEndOfWord() const {
-        return endOfWord;
-    }
-
-    bool hasChild() const {
-        return childNodeMap.size() != 0;
-    }
-
-    TrieNode* findChild(const char c) {
-        if (childNodeMap.count(c))
-            return childNodeMap[c];
-        else
-            return nullptr;
     }
 
     void addChild(char c) {
@@ -41,15 +22,18 @@ public:
         childNodeMap.erase(c);
     }
 
-    void markEndOfWord() {
-        endOfWord = true;
+    bool hasChild() const {
+        return !childNodeMap.empty();
     }
 
-    void unmarkEndOfWord() {
-        endOfWord = false;
+    TrieNode* findChild(const char c) {
+        auto it = childNodeMap.find(c);
+        if (it != childNodeMap.end())
+            return it->second;
+        else
+            return nullptr;
     }
 
-private:
     bool endOfWord;
     unordered_map<char, TrieNode*> childNodeMap;
 };
@@ -83,6 +67,74 @@ public:
 private:
     TrieNode* root;
     // unique_ptr<TrieNode> root;
+};
+
+/*
+ * 211. Design Add and Search Words Data Structure
+ */
+class WordDictionary {
+public:
+    /** Initialize your data structure here. */
+    WordDictionary() {
+        root = new TreeNode();
+    }
+
+    ~WordDictionary() {
+        delete root;
+    }
+
+    void addWord(string word) {
+        TreeNode* cur = root;
+        for (char c : word) {
+            if (!cur->childNodeMap.count(c))
+                cur->childNodeMap[c] = new TreeNode();
+            cur = cur->childNodeMap[c];
+        }
+        cur->word = word;
+    }
+
+    bool search(string word) {
+        return searchHelper(word, root);
+    }
+
+private:
+    struct TreeNode {
+        TreeNode() {
+        }
+
+        ~TreeNode() {
+            for (auto& p : childNodeMap)
+                delete p.second;
+        }
+
+        unordered_map<char, TreeNode*> childNodeMap;
+        string word;
+    };
+
+    bool searchHelper(string& word, TreeNode* cur) {
+        if (word.empty() && !cur->word.empty())
+            return true;
+        else {
+            for (int i = 0; i < word.size(); ++i) {
+                char c = word[i];
+                string next = word.substr(i);
+                if (c != '.') {
+                    if (!cur->childNodeMap.count(c))
+                        return false;
+                    cur->childNodeMap.count(c);
+                    searchHelper(next, cur);
+                } else {
+                    for (auto& p : cur->childNodeMap) {
+                        if (searchHelper(next, p.second))
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    TreeNode* root;
 };
 
 #endif //ACRUSH_TRIE_H

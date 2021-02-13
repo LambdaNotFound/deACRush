@@ -8,7 +8,7 @@ void Trie::insert(string word) {
             cur->addChild(c);
         cur = cur->findChild(c);
     }
-    cur->markEndOfWord();
+    cur->endOfWord = true;
 }
 
 /** Returns if the word is in the trie. */
@@ -19,7 +19,7 @@ bool Trie::search(string word) {
         if (!cur)
             return false;
     }
-    return cur->isEndOfWord();
+    return cur->endOfWord == true;
 }
 
 /** Returns if there is any word in the trie that starts with the given prefix. */
@@ -44,15 +44,16 @@ bool Trie::deleteWord(string word) {
             return false;
     }
 
-    if (!cur->isEndOfWord())
+    if (!cur->endOfWord)
         return false;
+    cur->endOfWord = false; // soft delete
 
-    cur->markEndOfWord();
     if (!cur->hasChild()) {
+        delete cur;
         for (int i = word.size() - 1; i >= 0; --i) {
-            TrieNode* tmp = s.top(); s.pop();
-            tmp->removeChild(word[i]);
-            if (tmp->hasChild())
+            cur = s.top(); s.pop();
+            cur->removeChild(word[i]);
+            if (cur->hasChild())
                 break;
         }
     }
