@@ -2,7 +2,7 @@
 
 /** Inserts a word into the trie. */
 void Trie::insert(string word) {
-    TrieNode* cur = m_root;
+    TrieNode* cur = root;
     for (auto const& c : word) {
         if (!cur->findChild(c))
             cur->addChild(c);
@@ -13,7 +13,7 @@ void Trie::insert(string word) {
 
 /** Returns if the word is in the trie. */
 bool Trie::search(string word) {
-    TrieNode* cur = m_root;
+    TrieNode* cur = root;
     for (auto const& c: word) {
         cur = cur->findChild(c);
         if (!cur)
@@ -24,7 +24,7 @@ bool Trie::search(string word) {
 
 /** Returns if there is any word in the trie that starts with the given prefix. */
 bool Trie::startsWith(string prefix) {
-    TrieNode* cur = m_root;
+    TrieNode* cur = root;
     for (auto const& c: prefix) {
         cur = cur->findChild(c);
         if (!cur)
@@ -35,7 +35,7 @@ bool Trie::startsWith(string prefix) {
 
 /** follow-up: delete a word from the trie **/
 bool Trie::deleteWord(string word) {
-    TrieNode* cur = m_root;
+    TrieNode* cur = root;
     stack<TrieNode*> s;
     for (auto const& c: word) {
         s.push(cur);

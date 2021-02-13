@@ -87,15 +87,24 @@ public:
 
 /*
  * 139. Word Break
+ *
+ *    dp[i] stores if substring ends at i - 1 has a valid sequence:
+ *
+ *    dp[i] = true if (a). s.substr(0, i) is a word in dict
+ *                    (b). dp[j] == true AND substr(j, i - j) is a word in dict: [0, j - 1], [j, i - 1]
  */
 public:
     bool wordBreak(string s, vector<string>& wordDict);
 
 /*
  * 140. Word Break II
+ *
+ * i. recursion w/ memorization
  */
 public:
     vector<string> wordBreakII(string s, vector<string>& wordDict);
+private:
+    vector<string> wordBreakIIHelper(string& s, vector<string>& wordDict, unordered_map<string, vector<string>>& memo);
 
 /**
  * 2D matrix with value dependents on neighbor cells

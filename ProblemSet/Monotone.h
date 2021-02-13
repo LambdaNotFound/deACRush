@@ -7,6 +7,10 @@ using namespace std;
 
 class Monotone {
 /**
+ * Monotonic Stack
+ */
+
+/**
  * Monotonic Queue
  */
 
@@ -19,10 +23,6 @@ class Monotone {
  */
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k);
-
-/**
- * Monotonic Stack
- */
 
 };
 

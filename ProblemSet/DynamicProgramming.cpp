@@ -165,6 +165,32 @@ bool DynamicProgramming::wordBreak(string s, vector<string>& wordDict) {
 
 // 140. Word Break II
 vector<string> DynamicProgramming::wordBreakII(string s, vector<string>& wordDict) {
+    unordered_map<string, vector<string>> memo;
+    return wordBreakIIHelper(s, wordDict, memo);
+}
+vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& wordDict, unordered_map<string, vector<string>>& memo) {
+    if (memo.count(s))
+        return memo[s];
+    if (s.empty())
+        return {""}; // tricks to handle whitespace
+
+    vector<string> tmp;
+    for (auto& word : wordDict) { //pick out word
+        if (s.substr(0, word.size()) != word)
+            continue;
+        string next = s.substr(word.size());
+        vector<string> res = wordBreakIIHelper(next, wordDict, memo);
+        for (string str : res) {
+            tmp.push_back(word + (str.empty() ? "" : " ") + str);
+        }
+    }
+    memo[s] = tmp;
+
+    return memo[s];
+}
+
+/*
+vector<string> wordBreakII(string s, vector<string>& wordDict) {
     int n = s.size();
     unordered_set<string> dict(wordDict.cbegin(), wordDict.cend());
     set<int> wordSizes;
@@ -190,6 +216,7 @@ vector<string> DynamicProgramming::wordBreakII(string s, vector<string>& wordDic
 
     return dp[n];
 }
+ */
 
 // 70. Climbing Stairs
 int DynamicProgramming::climbStairs(int n) {

@@ -96,3 +96,31 @@ void Backtracking::permuteUniqueHelper(vector<int>& nums, int level, vector<bool
         visited[i] = 0;
     }
 }
+
+// 79. Word Search
+bool Backtracking::exist(vector<vector<char>>& board, string word) {
+    int m = board.size(), n = board[0].size();
+    vector<vector<bool>> visited(m, vector<bool>(n, false));
+    for (int i = 0; i < m; ++i)
+        for (int j = 0; j < n; ++j)
+            if (existHelper(i, j, visited, board, word))
+                return true;
+    return false;
+}
+bool Backtracking::existHelper(int row, int col, vector<vector<bool>>& visited, vector<vector<char>>& board, string& word) {
+    if (word.empty())
+        return true;
+    if (row < 0 || row >= board.size() || col < 0 || col >= board[0].size())
+        return false;
+    if (!visited[row][col] && word[0] == board[row][col]) {
+        string next = word.substr(1);
+        visited[row][col] = true;
+        bool res = existHelper(row + 1, col, visited, board, next) ||
+                   existHelper(row, col + 1, visited, board, next) ||
+                   existHelper(row - 1, col, visited, board, next) ||
+                   existHelper(row, col - 1, visited, board, next);
+        visited[row][col] = false;
+        return res;
+    } else
+        return false;
+}
