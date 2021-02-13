@@ -7,51 +7,51 @@ using namespace std;
 
 class TrieNode {
 public:
-    TrieNode(const char c) : m_is_end_of_word(false) {
+    TrieNode(const char c) : endOfWord(false) {
     }
 
     TrieNode() : TrieNode('\0') {
     }
 
     ~TrieNode() {
-      for (auto const& [key, value] : m_child_node_map)
+      for (auto const& [key, value] : childNodeMap)
         delete value;
     }
 
     bool isEndOfWord() const {
-        return m_is_end_of_word;
+        return endOfWord;
     }
 
     bool hasChild() const {
-        return m_child_node_map.size() != 0;
+        return childNodeMap.size() != 0;
     }
 
     TrieNode* findChild(const char c) {
-        if (m_child_node_map.count(c))
-            return m_child_node_map[c];
+        if (childNodeMap.count(c))
+            return childNodeMap[c];
         else
             return nullptr;
     }
 
     void addChild(char c) {
-        m_child_node_map[c] = new TrieNode();
+        childNodeMap[c] = new TrieNode();
     }
 
     void removeChild(char c) {
-        m_child_node_map.erase(c);
+        childNodeMap.erase(c);
     }
 
     void markEndOfWord() {
-        m_is_end_of_word = true;
+        endOfWord = true;
     }
 
     void unmarkEndOfWord() {
-        m_is_end_of_word = false;
+        endOfWord = false;
     }
 
 private:
-    bool m_is_end_of_word;
-    unordered_map<char, TrieNode*> m_child_node_map;
+    bool endOfWord;
+    unordered_map<char, TrieNode*> childNodeMap;
 };
 
 /*
@@ -61,11 +61,11 @@ class Trie {
 public:
     /** Initialize your data structure here. */
     Trie() {
-        m_root = new TrieNode();
+        root = new TrieNode();
     }
 
     ~Trie() {
-        delete m_root;
+        delete root;
     }
 
     /** Inserts a word into the trie. */
@@ -81,8 +81,8 @@ public:
     bool deleteWord(string word);
 
 private:
-    TrieNode* m_root;
-    // unique_ptr<TrieNode> m_root;
+    TrieNode* root;
+    // unique_ptr<TrieNode> root;
 };
 
 #endif //ACRUSH_TRIE_H

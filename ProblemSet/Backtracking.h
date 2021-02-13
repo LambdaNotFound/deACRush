@@ -40,6 +40,18 @@ public:
 private:
     void permuteUniqueHelper(vector<int>& nums, int level, vector<bool>& visited, vector<int>& out, vector<vector<int>>& res);
 
+/*
+ * 79. Word Search
+ *
+ * Given an m x n board and a word, find if the word exists in the grid.
+ *
+ * i. Backtracking. Cannot use memorization
+ */
+public:
+    bool exist(vector<vector<char>>& board, string word);
+private:
+    bool existHelper(int row, int col, vector<vector<bool>>& visited, vector<vector<char>>& board, string& word);
+
 };
 
 #endif //ACRUSH_BACKTRACKING_H
