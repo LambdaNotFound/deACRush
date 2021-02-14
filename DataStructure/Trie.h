@@ -37,6 +37,7 @@ struct TrieNode {
     bool endOfWord;
     unordered_map<char, TrieNode*> childNodeMap;
     unordered_map<string, int> wordFrequencyMap; // autocomplete candidates
+    string value; // Word Search II
 };
 
 /*
@@ -130,7 +131,7 @@ private:
                 cur->childNodeMap[c] = new TrieNode();
             cur = cur->childNodeMap[c]; // move cur before add frequency
 
-            if (!cur->wordFrequencyMap,count(sentence))
+            if (!cur->wordFrequencyMap.count(sentence))
                 cur->wordFrequencyMap[sentence] = 0;
             cur->wordFrequencyMap[sentence] += times;
         }
