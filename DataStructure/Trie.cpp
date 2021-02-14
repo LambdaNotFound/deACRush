@@ -82,3 +82,36 @@ bool WordDictionary::searchHelper(const string& word, TrieNode* cur) {
         return false;
     }
 }
+
+// 642. Design Search Autocomplete System
+vector<string> AutocompleteSystem::input(char c) {
+    if (c == '#') {
+        addSentence(prefix, 1);
+        prefix = "";
+        return {};
+    }
+    prefix += c;
+
+    TrieNode* cur = root;
+    for (char& c : prefix) {
+        if (!cur->childNodeMap.count(c))
+            return {};
+        cur = cur->childNodeMap[c];
+    }
+
+    auto cmp = [](pair<string, int>& a, pair<string, int>& b) {
+               return a.second > b.second || (a.second == b.second && a.first < b.first);
+           };
+    priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(cmp) > q(cmp);
+    for (auto& p : cur->wordFrequencyMap) {
+        q.push(p);
+        if (q.size() > k)
+            q.pop();
+    }
+
+    vector<string> res(q.size());
+    for (int i = q.size() - 1; i >= 0; --i) {
+        res[i] = q.top().first; q.pop();
+    }
+    return res;
+}

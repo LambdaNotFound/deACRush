@@ -36,6 +36,7 @@ struct TrieNode {
 
     bool endOfWord;
     unordered_map<char, TrieNode*> childNodeMap;
+    unordered_map<string, int> wordFrequencyMap; // autocomplete candidates
 };
 
 /*
@@ -103,4 +104,41 @@ private:
     TrieNode* root;
 };
 
+/*
+ * 642. Design Search Autocomplete System
+ *
+ * i. Trie + Priority Queue
+ */
+class AutocompleteSystem {
+public:
+    AutocompleteSystem(vector<string> sentences, vector<int> times) {
+        prefix = "";
+        root = new TrieNode();
+        k = 3;
+
+        for (int i = 0; i < sentences.size(); ++i)
+            addSentence(sentences[i], times[i]);
+    }
+
+    vector<string> input(char c);
+
+private:
+    void addSentence(const string& sentence, int times) {
+        TrieNode* cur = root;
+        for (const char& c : sentence) {
+            if (!cur->childNodeMap.count(c))
+                cur->childNodeMap[c] = new TrieNode();
+            cur = cur->childNodeMap[c]; // move cur before add frequency
+
+            if (!cur->wordFrequencyMap,count(sentence))
+                cur->wordFrequencyMap[sentence] = 0;
+            cur->wordFrequencyMap[sentence] += times;
+        }
+        cur->endOfWord = true;
+    }
+
+    int k;
+    string prefix;
+    TrieNode* root;
+};
 #endif //ACRUSH_TRIE_H
