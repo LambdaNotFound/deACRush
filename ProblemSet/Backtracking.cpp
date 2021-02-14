@@ -1,5 +1,7 @@
 #include "Backtracking.h"
 
+#include "../DataStructure/Trie.h"
+
 // 46. Permutations
 vector<vector<int> > Backtracking::permute(vector<int>& nums) {
     vector<vector<int> > res;
@@ -123,4 +125,50 @@ bool Backtracking::existHelper(int row, int col, vector<vector<bool>>& visited, 
         return res;
     } else
         return false;
+}
+
+// 212. Word Search II
+vector<string> Backtracking::findWords(vector<vector<char>>& board, vector<string>& words) {
+    TrieNode* root = new TrieNode();
+    for (const auto& word : words) {
+        TrieNode* cur = root;
+        for (const auto& c : word) {
+            if (!cur->childNodeMap.count(c))
+                cur->childNodeMap[c] = new TrieNode();
+            cur = cur->childNodeMap[c];
+        }
+        cur->endOfWord = true;
+        cur->value = word;
+    }
+
+    vector<string> res;
+    int m = board.size(), n = board[0].size();
+    vector<vector<bool>> visited(m, vector<bool>(n, false));
+    for (int i = 0; i < m; ++i)
+        for (int j = 0; j < n; ++j)
+            findWordsHelper(i, j, visited, root, board, res);
+
+    return res;
+}
+void Backtracking::findWordsHelper(int row, int col, vector<vector<bool>>& visited, TrieNode* cur, const vector<vector<char>>& board, vector<string>& res) {
+    if (cur->endOfWord) {
+        cur->endOfWord = false;
+        res.push_back(cur->value);
+    }
+    if (row < 0 || row >= board.size() || col < 0 || col >= board[0].size())
+        return;
+    if (visited[row][col])
+        return;
+    if (!cur->childNodeMap.count(board[row][col]))
+        return;
+    else {
+        TrieNode* next = cur->childNodeMap[board[row][col]];
+        visited[row][col] = true;
+        findWordsHelper(row + 1, col, visited, next, board, res);
+        findWordsHelper(row, col + 1, visited, next, board, res);
+        findWordsHelper(row - 1, col, visited, next, board, res);
+        findWordsHelper(row, col - 1, visited, next, board, res);
+        visited[row][col] = false;
+        return;
+    }
 }
