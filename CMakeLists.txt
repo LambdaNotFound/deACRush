@@ -33,6 +33,7 @@ set(SOURCE_CORE
     Algorithm/Search/BinarySearch.cpp
     # Algorithm/ComputationalGeometry/SweepLine.cpp
     # Algorithm/DivideAndConquer/DivideAndConquer.cpp
+    Algorithm/Graph/TreeTraversal.cpp
     # Algorithm/Graph/UnionFind.cpp
     # Algorithm/RandomizedAlgorithm/RandomizedAlgorithm.cpp
     # Algorithm/Sorting/InsertionSort.cpp
