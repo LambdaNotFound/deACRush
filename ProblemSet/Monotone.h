@@ -33,13 +33,16 @@ public:
 /*
  * 239. Sliding Window Maximum
  *
- * i. Monotonic queue, compare the max with left-most element in current window
+ * i. Monotonic queue, compare the max with left-most element in current window. Time: O(n)
  * ii. multiset
  *
  */
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k);
 
+
+public:
+    vector<int> maxSlidingWindowMultiSet(vector<int>& nums, int k);
 };
 
 #endif //ACRUSH_MONOTONE_H

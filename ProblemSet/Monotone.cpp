@@ -1,7 +1,5 @@
 #include "Monotone.h"
 
-#include "MonotonicQueue.h"
-
 // 496. Next Greater Element I
 vector<int> Monotone::nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
     stack<int> s;
@@ -41,16 +39,53 @@ vector<int> nextGreaterElements(vector<int>& nums) {
 // 239. Sliding Window Maximum
 vector<int> Monotone::maxSlidingWindow(vector<int>& nums, int k) {
     vector<int> res;
-    MonotonicQueue<int> monoq;
+    deque<int> deq;
     for (int i = 0; i < nums.size(); ++i) {
-        monoq.push(nums[i]);
+        while (!deq.empty() && deq.back() < nums[i])
+            deq.pop_back();
+        deq.push_back(nums[i]);
 
-        if (i + 1 >= k) {
-            res.push_back(monoq.max());
-            if (nums[i + 1 - k] == monoq.max())
-                monoq.pop();
+        if (i - (k - 1) >= 0) { // window includes i, size of k
+            int max = deq.front();
+            res.push_back(max);
+            if (nums[i - (k - 1)] == max)
+                deq.pop_front();
         }
     }
 
+    return res;
+
+
+// monotone queue stores index
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> res;
+    deque<int> q;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (!q.empty() && q.front() == i - k)
+            q.pop_front();
+
+        while (!q.empty() && nums[q.back()] < nums[i])
+            q.pop_back();
+        q.push_back(i);
+
+        if (i >= k - 1)
+            res.push_back(nums[q.front()]);
+    }
+
+    return res;
+}
+
+vector<int> Monotone::maxSlidingWindowMultiSet(vector<int>& nums, int k) {
+    vector<int> res;
+    multiset<int> ms;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (i - k >= 0) // first left element outside of window
+            ms.erase(ms.find(nums[i - k]));
+
+        ms.insert(nums[i]);
+
+        if (i - (k - 1) >= 0) // window includes i, size of k
+            res.push_back(*ms.rbegin());
+    }
     return res;
 }
