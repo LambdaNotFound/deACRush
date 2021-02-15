@@ -12,8 +12,19 @@ class Monotone {
 
 /*
  * 496. Next Greater Element I
+ *
+ * i. w/ hashmap
  */
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2);
 
+/*
+ * 503. Next Greater Element II
+ *
+ * i. double read-only array w/ virtual index
+ */
+public:
+    vector<int> nextGreaterElements(vector<int>& nums);
 
 /**
  * Monotonic Queue
