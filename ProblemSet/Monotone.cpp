@@ -54,7 +54,7 @@ vector<int> Monotone::maxSlidingWindow(vector<int>& nums, int k) {
     }
 
     return res;
-
+}
 
 // monotone queue stores index
 vector<int> maxSlidingWindow(vector<int>& nums, int k) {
