@@ -1,5 +1,5 @@
 #include "DivideAndConquer.h"
-#include "../DataStructure/TreeNode.h"
+#include "TreeNode.h"
 
 // 95. Unique Binary Search Trees II
 vector<TreeNode*> DivideAndConquer::generateTrees(int n) {

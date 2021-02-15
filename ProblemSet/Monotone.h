@@ -10,6 +10,11 @@ class Monotone {
  * Monotonic Stack
  */
 
+/*
+ * 496. Next Greater Element I
+ */
+
+
 /**
  * Monotonic Queue
  */

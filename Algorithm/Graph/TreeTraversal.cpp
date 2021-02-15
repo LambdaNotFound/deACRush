@@ -1,6 +1,6 @@
 #include "TreeTraversal.h"
 
-#include "../DataStructure/TreeNode.h"
+#include "TreeNode.h"
 
 // 144. Binary Tree Preorder Traversal
 vector<int> TreeTraversal::preorderTraversal(TreeNode* root) {

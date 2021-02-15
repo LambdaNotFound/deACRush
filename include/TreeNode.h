@@ -7,11 +7,11 @@ struct TreeNode {
     TreeNode* right;
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 
-    // auxiliary methods
+    // helper methods
     TreeNode() : val(-1), left(nullptr), right(nullptr) {}
 
     TreeNode(int x, TreeNode* leftChild, TreeNode* rightChild) :
-         val(x), left(leftChild), right(rightChild) {}
+            val(x), left(leftChild), right(rightChild) {}
 
     std::size_t depth() const {
         const size_t leftDepth = left ? left->depth() : 0;
