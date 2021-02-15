@@ -51,8 +51,8 @@ set(SOURCE_CORE
     ProblemSet/Backtracking.cpp
     ProblemSet/BinarySearch.cpp
     ProblemSet/BitManipulation.cpp
+    ProblemSet/BreadthFirstSearch.cpp
     # ProblemSet/BinarySearchTree.cpp
-    # ProblemSet/BFS.cpp
     ProblemSet/DivideAndConquer.cpp
     ProblemSet/DynamicProgramming.cpp
     # ProblemSet/Graph.cpp
