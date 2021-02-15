@@ -22,7 +22,7 @@ vector<int> TreeTraversal::preorderTraversal(TreeNode* root) {
     return res;
 }
 
-vector<int> TreeTraversal::preorderMorrisTraversal(TreeNode* root) {
+vector<int> TreeTraversal::preorderTraversalMorris(TreeNode* root) {
     vector<int> res;
     if (!root)
         return res;
@@ -70,7 +70,7 @@ vector<int> TreeTraversal::inorderTraversal(TreeNode* root) {
     return res;
 }
 
-vector<int> TreeTraversal::inorderMorrisTraversal(TreeNode* root) {
+vector<int> TreeTraversal::inorderTraversalMorris(TreeNode* root) {
     vector<int> res;
     if (!root)
         return res;
