@@ -1,5 +1,7 @@
 #include "Monotone.h"
 
+#include "ListNode.h"
+
 // 496. Next Greater Element I
 vector<int> Monotone::nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
     stack<int> s;
@@ -20,7 +22,7 @@ vector<int> Monotone::nextGreaterElement(vector<int>& nums1, vector<int>& nums2)
 }
 
 // 503. Next Greater Element II
-vector<int> nextGreaterElements(vector<int>& nums) {
+vector<int> Monotone::nextGreaterElements(vector<int>& nums) {
     int n = nums.size();
     vector<int> res(n);
 
@@ -34,6 +36,63 @@ vector<int> nextGreaterElements(vector<int>& nums) {
     }
 
     return res;
+}
+
+// 1019. Next Greater Node In Linked List
+vector<int> Monotone::nextLargerNodes(ListNode* head) {
+    vector<int> res;
+    vector<int> list;
+    while (head) {
+        list.push_back(head->val);
+        head = head->next;
+    }
+
+    stack<int> s;
+    for (int i = list.size() - 1; i >= 0; --i) {
+        while (!s.empty() && s.top() <= list[i])
+            s.pop();
+
+        res.insert(res.begin(), s.empty() ? 0 : s.top());
+        s.push(list[i]);
+    }
+
+    return res;
+}
+
+// 739. Daily Temperatures
+vector<int> Monotone::dailyTemperatures(vector<int>& T) {
+    int n = T.size();
+    vector<int> res(n);
+
+    stack<int> s;
+    for (int i = n - 1; i >= 0; --i) {
+        while (!s.empty() && T[s.top()] <= T[i])
+            s.pop();
+
+        res[i] = s.empty() ? 0 : s.top() - i;
+        s.push(i);
+    }
+
+    return res;
+}
+
+// 402. Remove K Digits
+string Monotone::removeKdigits(string num, int k) {
+    int size = num.size() - k;
+    string res;
+    for (int i = 0; i < num.size(); ++i) {
+        while (!res.empty() && res.back() > num[i] && k > 0) {
+            res.pop_back();
+            --k;
+        }
+        res.push_back(num[i]);
+    }
+    res.resize(size); // picking up n - k digits in the asc stack
+
+    while (!res.empty() && res[0] == '0')
+        res.erase(res.begin());
+
+    return res.empty() ? "0" : res;
 }
 
 // 239. Sliding Window Maximum
