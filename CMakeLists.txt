@@ -55,7 +55,7 @@ set(SOURCE_CORE
     # ProblemSet/BinarySearchTree.cpp
     ProblemSet/DivideAndConquer.cpp
     ProblemSet/DynamicProgramming.cpp
-    # ProblemSet/Graph.cpp
+    ProblemSet/Graph.cpp
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
     ProblemSet/Heap.cpp
@@ -102,6 +102,7 @@ set(SOURCE_TESTS
     UnitTest/Heap.cpp
     UnitTest/MathTricks.cpp
     UnitTest/MergeSort.cpp
+    UnitTest/Monotone.cpp
     UnitTest/SlidingWindow.cpp
     UnitTest/Tree.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
