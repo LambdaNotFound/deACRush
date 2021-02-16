@@ -9,6 +9,17 @@ struct TrieNode;
 
 class Backtracking {
 /*
+ * 17. Letter Combinations of a Phone Number
+ *
+ * i. Backtracking
+ * ii. BFS
+ */
+public:
+    vector<string> letterCombinations(string digits);
+private:
+    void letterCombinationsHelper(const string& digits, const vector<string>& mapping, string& out, vector<string>& res);
+
+/*
  * 46. Permutations
  *
  * Given a collection of distinct integers, return all possible permutations.

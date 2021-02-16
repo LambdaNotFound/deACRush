@@ -2,6 +2,30 @@
 
 #include "TreeNode.h"
 
+// 17. Letter Combinations of a Phone Number
+vector<string> BreadthFirstSearch::letterCombinations(string digits) {
+    vector<string> res;
+    if (digits.empty())
+        return res;
+
+    vector<string> mapping = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    queue<string> q; q.push("");
+    for (int i = 0; i < digits.size(); ++i)
+        for (int j = q.size(); j > 0; --j) {
+            string cur = q.front(); q.pop();
+            for (int k = 0; k < mapping[digits[i] - '0'].size(); ++k) {
+                string next = cur + mapping[digits[i] - '0'][k];
+                if (i == digits.size() - 1)
+                    res.push_back(next);
+                else
+                    q.push(next);
+            }
+        }
+
+
+    return res;
+}
+
 // 126. Word Ladder II
 vector<vector<string>> BreadthFirstSearch::findLadders(string beginWord, string endWord, vector<string>& wordList) {
     vector<vector<string>> res;

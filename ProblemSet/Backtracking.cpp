@@ -2,6 +2,31 @@
 
 #include "../DataStructure/Trie.h"
 
+// 17. Letter Combinations of a Phone Number
+vector<string> Backtracking::letterCombinations(string digits) {
+    vector<string> res;
+    if (digits.empty())
+        return res;
+
+    string out;
+    vector<string> mapping = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    letterCombinationsHelper(digits, mapping, out, res);
+    return res;
+}
+void Backtracking::letterCombinationsHelper(const string& digits, const vector<string>& mapping, string& out, vector<string>& res) {
+    if (digits.empty()) {
+        res.push_back(out);
+        return;
+    }
+
+    string letters = mapping[digits[0] - '0'];
+    for (int i = 0; i < letters.size(); ++i) {
+        out.push_back(letters[i]);
+        letterCombinationsHelper(digits.substr(1), mapping, out, res);
+        out.pop_back();
+    }
+}
+
 // 46. Permutations
 vector<vector<int> > Backtracking::permute(vector<int>& nums) {
     vector<vector<int> > res;
