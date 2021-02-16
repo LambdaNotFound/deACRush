@@ -95,6 +95,40 @@ string Monotone::removeKdigits(string num, int k) {
     return res.empty() ? "0" : res;
 }
 
+// 42. Trapping Rain Water
+int Monotone::trap(vector<int>& height) {
+    int res = 0;
+    stack<int> s;
+    for (int i = 0; i < height.size(); ++i) {
+        while (!s.empty() && height[s.top()] < height[i]) {
+            int bottom = height[s.top()]; s.pop();
+            if (s.empty())
+                break;
+            res += (min(height[s.top()], height[i]) - bottom) * (i - s.top() - 1);
+        }
+        s.push(i);
+    }
+
+    return res;
+}
+
+// 84. Largest Rectangle in Histogram
+int Monotone::largestRectangleArea(vector<int>& heights) {
+    int res = 0;
+    stack<int> s;
+    heights.push_back(0);
+    for (int i = 0; i < heights.size(); ++i) {
+        while (!s.empty() && heights[s.top()] > heights[i]) {
+            int height = heights[s.top()]; s.pop();
+            int width = s.empty() ? i : i - s.top() - 1;
+            res = max(res, height * width);
+        }
+        s.push(i);
+    }
+
+    return res;
+}
+
 // 239. Sliding Window Maximum
 vector<int> Monotone::maxSlidingWindow(vector<int>& nums, int k) {
     vector<int> res;

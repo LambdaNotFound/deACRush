@@ -55,6 +55,64 @@ public:
 public:
     string removeKdigits(string num, int k);
 
+/*
+ * 42. Trapping Rain Water
+ *
+ * i. w/ mono descending stack <= LIKE
+ *
+ *   S = (min(height[s.top()], height[i]) - bottom) * (i - s.top() - 1)
+ *
+ *   X
+ *   X X       #
+ *   X X       #
+ *   X X X X * #
+ *   X X X X X #
+ *   -----------
+ *      <- t B i
+ *
+ *   X
+ *   X X . . . #
+ *   X X . . . #
+ *   X X X X * #
+ *   X X X X X #
+ *   -----------
+ *  <- t B     i
+ *
+ */
+public:
+    int trap(vector<int>& height);
+
+/*
+ * 84. Largest Rectangle in Histogram
+ *
+ * i. w/ mono ascending stack <= LIKE
+ *
+ *   S = heights[s.top()] * (s.empty() ? i : i - s.top() - 1)
+ *
+ *           A
+ *       X X A
+ *     X X X A
+ *   X X X X A #
+ *   -----------
+ *      <- t H i
+ *
+ *           X
+ *       X B B
+ *     X X B B
+ *   X X X B B #
+ *   -----------
+ *    <- t H   i
+ *
+ *           X
+ *       C C C
+ *     X C C C
+ *   X X C C C #
+ *   -----------
+ *  <- t H     i
+ */
+public:
+    int largestRectangleArea(vector<int>& heights);
+
 /**
  * Monotonic Queue
  */
