@@ -33,6 +33,7 @@ set(SOURCE_CORE
     Algorithm/Search/BinarySearch.cpp
     # Algorithm/ComputationalGeometry/SweepLine.cpp
     # Algorithm/DivideAndConquer/DivideAndConquer.cpp
+    Algorithm/Graph/TreeTraversal.cpp
     # Algorithm/Graph/UnionFind.cpp
     # Algorithm/RandomizedAlgorithm/RandomizedAlgorithm.cpp
     # Algorithm/Sorting/InsertionSort.cpp
@@ -50,11 +51,11 @@ set(SOURCE_CORE
     ProblemSet/Backtracking.cpp
     ProblemSet/BinarySearch.cpp
     ProblemSet/BitManipulation.cpp
+    ProblemSet/BreadthFirstSearch.cpp
     # ProblemSet/BinarySearchTree.cpp
-    # ProblemSet/BFS.cpp
     ProblemSet/DivideAndConquer.cpp
     ProblemSet/DynamicProgramming.cpp
-    # ProblemSet/Graph.cpp
+    ProblemSet/Graph.cpp
     # ProblemSet/Greedy.cpp
     ProblemSet/HashMap.cpp
     ProblemSet/Heap.cpp
@@ -101,6 +102,7 @@ set(SOURCE_TESTS
     UnitTest/Heap.cpp
     UnitTest/MathTricks.cpp
     UnitTest/MergeSort.cpp
+    UnitTest/Monotone.cpp
     UnitTest/SlidingWindow.cpp
     UnitTest/Tree.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp

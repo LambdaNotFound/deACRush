@@ -76,3 +76,27 @@ int HashMap::lengthOfLongestSubstringFollowUp(string s, int k) {
 
     return res;
 }
+
+// 316. Remove Duplicate Letters
+string HashMap::removeDuplicateLetters(string s) {
+    int cnt[256] = { 0 };
+    bool used[256] = { false };
+    for (const auto& c: s)
+        ++cnt[c];
+
+    string res = "0";
+    for (const auto& c: s) {
+        --cnt[c];
+        if (used[c])
+            continue;
+
+        while (c < res.back() && cnt[res.back()] > 0) {
+            used[res.back()] = false;
+            res.pop_back();
+        }
+        res += c;
+        used[c] = true;
+    }
+
+    return res.substr(1);
+}

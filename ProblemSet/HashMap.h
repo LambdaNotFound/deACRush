@@ -19,7 +19,7 @@ public:
 /*
  * 170. Two Sum III - Data structure design
  *
- * delta == value - key => count > 1
+ * if (delta == value - key) , needs to check if count(delta) > 1
  *
  * i. HashMap<num, count>
  * ii. unordered_multiset<int>
@@ -66,6 +66,19 @@ public:
 public:
     int lengthOfLongestSubstringFollowUp(string s, int k);
 
+/*
+ * 316. Remove Duplicate Letters
+ * 1081. Smallest Subsequence of Distinct Characters
+ *
+ * Return the lexicographically smallest subsequence of s that contains all the distinct characters of s exactly once.
+ *
+ * i. HashMap to count occurrence
+ */
+public:
+    string removeDuplicateLetters(string s);
+
+public:
+    string smallestSubsequence(string s);
 };
 
 #endif //ACRUSH_HASHMAP_H

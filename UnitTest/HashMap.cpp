@@ -46,3 +46,13 @@ TEST(L170TwoSumIII, HashMap) {
     expected = true;
     EXPECT_EQ(res, expected);
 }
+
+TEST(L316RemoveDuplicateLetters, HashMap) {
+    HashMap sln;
+
+    auto input = "cbacdcbc";
+    auto expected = "acdb";
+
+    auto result = sln.removeDuplicateLetters(input);
+    EXPECT_EQ(result, expected);
+}
