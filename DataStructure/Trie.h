@@ -108,5 +108,4 @@ private:
     string prefix;
     TrieNode* root;
 };
-
 #endif //ACRUSH_TRIE_H
