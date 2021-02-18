@@ -43,6 +43,12 @@ public:
         unordered_map<int, int> hashMap;
     };
 
+/**
+ * set: self balancing BST, search: O(logn)
+ * unordered_set: hash table, search: O(1)
+ *
+ */
+
 
 /*
  * 3. Longest Substring Without Repeating Characters

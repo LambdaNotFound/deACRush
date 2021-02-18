@@ -2,6 +2,30 @@
 
 #include "TreeNode.h"
 
+// 17. Letter Combinations of a Phone Number
+vector<string> BreadthFirstSearch::letterCombinations(string digits) {
+    vector<string> res;
+    if (digits.empty())
+        return res;
+
+    vector<string> mapping = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    queue<string> q; q.push("");
+    for (int i = 0; i < digits.size(); ++i)
+        for (int j = q.size(); j > 0; --j) {
+            string cur = q.front(); q.pop();
+            for (int k = 0; k < mapping[digits[i] - '0'].size(); ++k) {
+                string next = cur + mapping[digits[i] - '0'][k];
+                if (i == digits.size() - 1)
+                    res.push_back(next);
+                else
+                    q.push(next);
+            }
+        }
+
+
+    return res;
+}
+
 // 126. Word Ladder II
 vector<vector<string>> BreadthFirstSearch::findLadders(string beginWord, string endWord, vector<string>& wordList) {
     vector<vector<string>> res;
@@ -145,3 +169,57 @@ TreeNode* invertTree(TreeNode* root) {
     return root;
 }
  */
+
+// 297. Serialize and Deserialize Binary Tree
+string BreadthFirstSearch::Codec::serialize(TreeNode* root) {
+    ostringstream out;
+    queue<TreeNode*> q;
+    if (root)
+        q.push(root);
+
+    while (!q.empty()) {
+        TreeNode* tmp = q.front(); q.pop();
+        if (tmp) {
+            out << tmp->val << ' ';
+            q.push(tmp->left);
+            q.push(tmp->right);
+        } else {
+            out << "# ";
+        }
+    }
+
+    return out.str();
+}
+
+TreeNode* BreadthFirstSearch::Codec::deserialize(string data) {
+    if (data.empty())
+        return nullptr;
+
+    istringstream in(data);
+    string value;
+    in >> value;
+    TreeNode* root = new TreeNode(stoi(value));
+
+    queue<TreeNode*> q; q.push(root);
+    while (!q.empty()) {
+        TreeNode* cur = q.front(); q.pop();
+
+        if (!(in >> value))
+            break;
+        if (value != "#") {
+            TreeNode* left = new TreeNode(stoi(value));
+            cur->left = left;
+            q.push(left);
+        }
+
+        if (!(in >> value))
+            break;
+        if (value != "#") {
+            TreeNode* right = new TreeNode(stoi(value));
+            cur->right = right;
+            q.push(right);
+        }
+    }
+
+    return root;
+}

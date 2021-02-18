@@ -29,6 +29,24 @@ class BinarySearch {
  *          [left, mid - 1]    [mid + 1, right]
  */
 
+ /*
+  * std::lower_bound(v.begin(), v.end(), target);
+  *   the first element in the range [first, last) which does not compare less than the target
+  *   !(a[i] < target), a[i] >= target
+  *
+  * std::upper_bound(v.begin(), v.end(), target)
+  *   the first element in the range [first, last) which compares greater than target
+  *   a[i] > target
+  */
+public:
+    int lower_bound_iterative(std::vector<int>& nums, int target);
+
+    int lower_bound_recursive(std::vector<int>& nums, int target, int low, int high);
+
+    int upper_bound_iterative(std::vector<int>& nums, int target);
+
+    int upper_bound_recursive(std::vector<int>& nums, int target, int low, int high);
+
 /*
  * 35. Search Insert Position
  */
