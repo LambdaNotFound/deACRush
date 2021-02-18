@@ -169,3 +169,57 @@ TreeNode* invertTree(TreeNode* root) {
     return root;
 }
  */
+
+// 297. Serialize and Deserialize Binary Tree
+string BreadthFirstSearch::Codec::serialize(TreeNode* root) {
+    ostringstream out;
+    queue<TreeNode*> q;
+    if (root)
+        q.push(root);
+
+    while (!q.empty()) {
+        TreeNode* tmp = q.front(); q.pop();
+        if (tmp) {
+            out << tmp->val << ' ';
+            q.push(tmp->left);
+            q.push(tmp->right);
+        } else {
+            out << "# ";
+        }
+    }
+
+    return out.str();
+}
+
+TreeNode* BreadthFirstSearch::Codec::deserialize(string data) {
+    if (data.empty())
+        return nullptr;
+
+    istringstream in(data);
+    string value;
+    in >> value;
+    TreeNode* root = new TreeNode(stoi(value));
+
+    queue<TreeNode*> q; q.push(root);
+    while (!q.empty()) {
+        TreeNode* cur = q.front(); q.pop();
+
+        if (!(in >> value))
+            break;
+        if (value != "#") {
+            TreeNode* left = new TreeNode(stoi(value));
+            cur->left = left;
+            q.push(left);
+        }
+
+        if (!(in >> value))
+            break;
+        if (value != "#") {
+            TreeNode* right = new TreeNode(stoi(value));
+            cur->right = right;
+            q.push(right);
+        }
+    }
+
+    return root;
+}
