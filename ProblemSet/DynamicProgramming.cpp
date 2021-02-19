@@ -1,5 +1,25 @@
 #include "DynamicProgramming.h"
 
+// 5. Longest Palindromic Substring
+string DynamicProgramming::longestPalindrome(string s) {
+    int start = 0, len = 1, n = s.size();
+    vector<vector<bool>> dp(n, vector<bool>(n));
+    for (int j = 1; j < s.size(); ++j) {
+        dp[j][j] = true;
+        for (int i = 0; i < j; ++i) {
+            if (s[i] == s[j])
+                dp[i][j] = (j - i == 1) ? true : dp[i + 1][j - 1];
+
+            if (dp[i][j] && (len < j - i + 1)) {
+                len = j - i + 1;
+                start = i;
+            }
+        }
+    }
+
+    return s.substr(start, len);
+}
+
 // 10. Regular Expression Matching
 bool DynamicProgramming::isMatch(string s, string p) {
     int m = s.size(), n = p.size();

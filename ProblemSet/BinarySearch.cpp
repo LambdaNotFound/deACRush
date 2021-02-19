@@ -48,6 +48,20 @@ double BinarySearch::findKthSmallestElement(vector<int>& nums1, int i, vector<in
         return findKthSmallestElement(nums1, i + k / 2, nums2, j, k - k / 2);
 }
 
+// 278. First Bad Version
+int BinarySearch::firstBadVersion(int n) {
+    int left = 0, right = n;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        bool isBad = isBadVersion(mid);
+        if (isBad)
+            right = mid - 1;
+        else
+            left = mid + 1;
+    }
+    return left;
+}
+
 // 300. Longest Increasing Subsequence
 int BinarySearch::lengthOfLIS(vector<int>& nums) {
     if (nums.size() == 0)
