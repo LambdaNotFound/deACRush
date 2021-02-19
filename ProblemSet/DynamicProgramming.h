@@ -10,6 +10,22 @@ class DynamicProgramming {
  * String related: longest substring, parlindrom, etc.
  */
 
+ /*
+  * 5. Longest Palindromic Substring
+  *
+  * i. DP:
+  *    dp[i][j] stores if substring s[i, j] is palindromic
+  *
+  *    dp[i][j] = (a). true if i == j
+  *               (b). true if i - j == 1 && s[i] == s[j]
+  *               (c). dp[i + 1][j - 1] if s[i] == s[j]
+  */
+public:
+    string longestPalindrome(string s);
+
+public:
+    string longestPalindromeOptimized(string s);
+
 /*
  * 10. Regular Expression Matching
  *

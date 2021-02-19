@@ -5,17 +5,17 @@ using namespace std;
 
 // 23. Merge k Sorted Lists
 ListNode* Heap::mergeKLists(vector<ListNode*>& lists) {
-    auto cmp = [](ListNode*& a, ListNode*& b) {
+    auto cmp = [](ListNode* a, ListNode* b) {
                    return a->val > b->val;
                };
 
     priority_queue<ListNode*, vector<ListNode*>, decltype(cmp) > heap(cmp);
 
-    for (auto node : lists)
-        if (node)
-            heap.push(node);
+    for (const auto& list : lists)
+        if (list)
+            heap.push(list);
 
-    ListNode dummy(-1), *cur = &dummy;
+    ListNode dummy, *cur = &dummy;
     while (!heap.empty()) {
         auto tmp = heap.top(); heap.pop();
         if (tmp->next)
