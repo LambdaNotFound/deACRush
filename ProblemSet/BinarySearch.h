@@ -30,6 +30,14 @@ private:
     double findKthSmallestElement(vector<int>& nums1, int i, vector<int>& nums2, int j, int k);
 
 /*
+ * 278. First Bad Version
+ */
+public:
+    int firstBadVersion(int n);
+private:
+    bool isBadVersion(int n) { return false; }
+
+/*
  * 300. Longest Increasing Subsequence
  *
  * i. DP T: O(n^2), S: O(n)
@@ -43,6 +51,8 @@ private:
 
 public:
     int lengthOfLISDP(vector<int>& nums);
+
+
 
 };
 

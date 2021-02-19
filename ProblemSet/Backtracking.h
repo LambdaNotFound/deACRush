@@ -77,6 +77,13 @@ public:
 private:
     void findWordsHelper(int row, int col, vector<vector<bool>>& visited, TrieNode* cur, const vector<vector<char>>& board, vector<string>& res);
 
+/*
+ * 282. Expression Add Operators
+ */
+public:
+    vector<string> addOperators(string num, int target);
+private:
+    void addOperatorsHelper(string num, int target, long diff, long curNum, string out, vector<string>& res);
 };
 
 #endif //ACRUSH_BACKTRACKING_H
