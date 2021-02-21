@@ -100,3 +100,26 @@ string HashMap::removeDuplicateLetters(string s) {
 
     return res.substr(1);
 }
+
+// 128. Longest Consecutive Sequence
+int HashMap::longestConsecutive(vector<int>& nums) {
+    if (nums.empty())
+        return 0;
+
+    int res = 1;
+    unordered_set<int> graph(nums.begin(), nums.end());
+    for (auto& n : graph) {
+        int pre = n - 1, next = n + 1;
+        while (graph.count(pre)) {
+            graph.erase(pre);
+            --pre;
+        }
+        while (graph.count(next)) {
+            graph.erase(next);
+            ++next;
+        }
+        res = max(res, next - pre - 1);
+    }
+
+    return res;
+}

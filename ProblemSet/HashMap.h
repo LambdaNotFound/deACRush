@@ -89,6 +89,14 @@ public:
 
 public:
     string smallestSubsequence(string s);
+
+/*
+ * 128. Longest Consecutive Sequence
+ *
+ * i. HashSet, w/ removing consecutive numbers. T: O(n)
+ */
+public:
+    int longestConsecutive(vector<int>& nums);
 };
 
 #endif //ACRUSH_HASHMAP_H
