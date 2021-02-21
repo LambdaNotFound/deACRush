@@ -44,6 +44,12 @@ public:
     bool isSubtreeSerialize(TreeNode* s, TreeNode* t);
 private:
     void isSubtreeSerializeHelper(TreeNode* node, ostringstream& os);
+
+/*
+ * 129. Sum Root to Leaf Numbers
+ */
+public:
+    int sumNumbers(TreeNode* root);
 };
 
 #endif //ACRUSH_TREE_H

@@ -59,3 +59,34 @@ void Tree::isSubtreeSerializeHelper(TreeNode* node, ostringstream& os) {
         isSubtreeSerializeHelper(node->right, os);
     }
 }
+
+// 129. Sum Root to Leaf Numbers
+int sumNumbers(TreeNode* root) {
+    int sum;
+    vector<TreeNode*> s;
+    TreeNode *p = root, *pre;
+    while (!s.empty() || p) {
+        if (p) {
+            s.push_back(p);
+            p = p->left;
+        } else {
+            p = s.back();
+            if (!p->left && !p->right) {
+                int tmp = 0;
+                for (int i = 0; i < s.size(); ++i)
+                    tmp = tmp * 10 + s[i]->val;
+                sum += tmp;
+            }
+
+            if (p->right && pre != p->right) {
+                p = p->right;
+            } else {
+                s.pop_back();
+                pre = p;
+                p = nullptr;
+            }
+        }
+    }
+
+    return sum;
+}
