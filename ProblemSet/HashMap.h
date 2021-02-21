@@ -6,6 +6,10 @@
 using namespace std;
 
 class HashMap {
+/**
+ * HashMap
+ */
+
 /*
  * 1. Two Sum
  *
@@ -44,11 +48,11 @@ public:
     };
 
 /**
+ * HashSet, deduplicate
+ *
  * set: self balancing BST, search: O(logn)
  * unordered_set: hash table, search: O(1)
- *
  */
-
 
 /*
  * 3. Longest Substring Without Repeating Characters
