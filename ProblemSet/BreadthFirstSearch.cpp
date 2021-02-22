@@ -1,6 +1,33 @@
 #include "BreadthFirstSearch.h"
 
 #include "TreeNode.h"
+#include "Node.h"
+
+// 116. Populating Next Right Pointers in Each Node
+Node* BreadthFirstSearch::connect(Node* root) {
+    if (!root)
+        return nullptr;
+
+    queue<Node*> q; q.push(root);
+    while (!q.empty()) {
+        Node* cur;
+        for (int i = q.size(); i > 0; --i) {
+            cur = q.front(); q.pop();
+
+            if (cur->left)
+                q.push(cur->left);
+            if (cur->right)
+                q.push(cur->right);
+
+            if (i == 1)
+                cur->next = nullptr;
+            else
+                cur->next = q.front();
+        }
+    }
+
+    return root;
+}
 
 // 17. Letter Combinations of a Phone Number
 vector<string> BreadthFirstSearch::letterCombinations(string digits) {

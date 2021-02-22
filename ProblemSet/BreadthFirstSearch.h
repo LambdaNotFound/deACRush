@@ -7,7 +7,20 @@ using namespace std;
 
 struct TreeNode;
 
+struct Node;
+
 class BreadthFirstSearch {
+
+/**
+ * Binary Tree BFS
+ */
+
+/*
+ * 116. Populating Next Right Pointers in Each Node
+ * 117. Populating Next Right Pointers in Each Node II
+ */
+public:
+    Node* connect(Node* root);
 
 /*
  * 17. Letter Combinations of a Phone Number
