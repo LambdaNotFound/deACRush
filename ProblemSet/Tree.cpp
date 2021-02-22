@@ -2,6 +2,37 @@
 
 #include "TreeNode.h"
 
+// 129. Sum Root to Leaf Numbers
+int sumNumbers(TreeNode* root) {
+    int sum;
+    vector<TreeNode*> s;
+    TreeNode *p = root, *pre;
+    while (!s.empty() || p) {
+        if (p) {
+            s.push_back(p);
+            p = p->left;
+        } else {
+            p = s.back();
+            if (!p->left && !p->right) {
+                int tmp = 0;
+                for (int i = 0; i < s.size(); ++i)
+                    tmp = tmp * 10 + s[i]->val;
+                sum += tmp;
+            }
+
+            if (p->right && pre != p->right) {
+                p = p->right;
+            } else {
+                s.pop_back();
+                pre = p;
+                p = nullptr;
+            }
+        }
+    }
+
+    return sum;
+}
+
 // 100. Same Tree
 bool Tree::isSameTree(TreeNode* p, TreeNode* q) {
     if (p && q) {
@@ -60,33 +91,34 @@ void Tree::isSubtreeSerializeHelper(TreeNode* node, ostringstream& os) {
     }
 }
 
-// 129. Sum Root to Leaf Numbers
-int sumNumbers(TreeNode* root) {
-    int sum;
-    vector<TreeNode*> s;
-    TreeNode *p = root, *pre;
-    while (!s.empty() || p) {
-        if (p) {
-            s.push_back(p);
-            p = p->left;
-        } else {
-            p = s.back();
-            if (!p->left && !p->right) {
-                int tmp = 0;
-                for (int i = 0; i < s.size(); ++i)
-                    tmp = tmp * 10 + s[i]->val;
-                sum += tmp;
-            }
-
-            if (p->right && pre != p->right) {
+// 114. Flatten Binary Tree to Linked List
+void flatten(TreeNode *root) {
+    TreeNode *cur = root;
+    while (cur) {
+        if (cur->left) {
+            TreeNode *p = cur->left;
+            while (p->right)
                 p = p->right;
-            } else {
-                s.pop_back();
-                pre = p;
-                p = nullptr;
-            }
+            p->right = cur->right;
+            cur->right = cur->left;
+            cur->left = nullptr;
         }
+        cur = cur->right;
     }
+}
 
-    return sum;
+void Tree::flatten(TreeNode *root) {
+    if (!root)
+        return;
+    if (root->left)
+        flatten(root->left);
+    if (root->right)
+        flatten(root->right);
+
+    TreeNode *tmp = root->right;
+    root->right = root->left;
+    root->left = nullptr;
+    while (root->right)
+        root = root->right;
+    root->right = tmp;
 }

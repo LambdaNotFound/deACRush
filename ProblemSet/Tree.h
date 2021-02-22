@@ -13,8 +13,14 @@ class Tree {
  * Tree Traversal: DFS with a stack
  */
 
+ /*
+  * 129. Sum Root to Leaf Numbers
+  */
+ public:
+     int sumNumbers(TreeNode* root);
+
 /**
- * Tree: Recursion
+ * Tree: Recursive Approach
  */
 
 /*
@@ -46,10 +52,13 @@ private:
     void isSubtreeSerializeHelper(TreeNode* node, ostringstream& os);
 
 /*
- * 129. Sum Root to Leaf Numbers
+ * 114. Flatten Binary Tree to Linked List
+ *
+ * The "linked list" should be in the same order as a pre-order traversal of the binary tree.
  */
 public:
-    int sumNumbers(TreeNode* root);
+    void flatten(TreeNode* root);
+
 };
 
 #endif //ACRUSH_TREE_H
