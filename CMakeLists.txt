@@ -105,6 +105,7 @@ set(SOURCE_TESTS
     UnitTest/Monotone.cpp
     UnitTest/SlidingWindow.cpp
     UnitTest/Tree.cpp
+    UnitTest/Wargame.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp
