@@ -2,9 +2,26 @@
 #include "gtest/gtest.h"
 
 #include "TreeNode.h"
+#include "../Algorithm/Graph/GraphTraversal.h"
 #include "../ProblemSet/Tree.h"
 
 using namespace std;
+
+TEST(L200NumberOfIslands, GraphTraversal) {
+    GraphTraversal sln;
+
+    vector<vector<char>> grid = {
+        {'1', '1', '1', '1', '0'},
+        {'1', '1', '0', '1', '0'},
+        {'1', '1', '0', '0', '0'},
+        {'0', '0', '0', '0', '0'}
+    };
+
+    int expected = 1;
+    int result = sln.numIslands(grid);
+    EXPECT_EQ(result, expected);
+}
+
 
 TEST(L572SubtreeOfAnotherTree, TreeRecursion) {
     Tree sln;

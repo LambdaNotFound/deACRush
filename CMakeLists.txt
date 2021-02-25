@@ -31,8 +31,10 @@ add_executable(acrush main.cpp)
 set(SOURCE_CORE
     include/Utility.cpp
     Algorithm/Search/BinarySearch.cpp
+    Algorithm/String/StringMatching.cpp
     # Algorithm/ComputationalGeometry/SweepLine.cpp
     # Algorithm/DivideAndConquer/DivideAndConquer.cpp
+    Algorithm/Graph/GraphTraversal.cpp
     Algorithm/Graph/TreeTraversal.cpp
     # Algorithm/Graph/UnionFind.cpp
     # Algorithm/RandomizedAlgorithm/RandomizedAlgorithm.cpp
