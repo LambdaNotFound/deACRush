@@ -54,4 +54,3 @@ TEST(L1143LongestCommonSubsequence, StringMatching) {
     res = sln.longestCommonSubsequenceDP(a, b);
     EXPECT_EQ(res, expected);
 }
-
