@@ -29,7 +29,7 @@ TEST(L718MaximumLengthOfRepeatedSubarray, StringMatching) {
     A = { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1 };
     B = { 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 };
     expected = 6;
-    res = sln.findLength(A, B);
+    res = sln.findLengthDP(A, B);
     EXPECT_EQ(res, expected);
 
     A = { 1, 2, 6, 3, 4 };
@@ -46,6 +46,12 @@ TEST(L1143LongestCommonSubsequence, StringMatching) {
     string b = "pqhgxgdofcvmr";
     int expected = 5;
     int res = sln.longestCommonSubsequence(a, b);
+    EXPECT_EQ(res, expected);
+
+    a = "ylqpejqbalahwr";
+    b = "yrkzavgdmdgtqpg";
+    expected = 3;
+    res = sln.longestCommonSubsequenceDP(a, b);
     EXPECT_EQ(res, expected);
 }
 

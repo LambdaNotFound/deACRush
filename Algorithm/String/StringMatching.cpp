@@ -86,6 +86,18 @@ int StringMatching::findLengthHelper(vector<int>& A, int m, vector<int>& B, int 
     return max(len, res);
 }
 
+int StringMatching::findLengthDP(vector<int>& A, vector<int>& B) {
+    int m = A.size(), n = B.size(), res = 0;
+    vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+    for (int i = 1; i <= m; ++i)
+        for (int j = 1; j <= n; ++j) {
+            dp[i][j] = (A[i - 1] == B[j - 1] ? dp[i - 1][j - 1] + 1 : 0);
+            res = max(res, dp[i][j]);
+        }
+    return res;
+}
+
+// 1143. Longest Common Subsequence
 int StringMatching::longestCommonSubsequence(string A, string B) {
     return longestCommonSubsequenceHelper(A, A.size() - 1, B, B.size() - 1, 0);
 }
@@ -96,10 +108,25 @@ int StringMatching::longestCommonSubsequenceHelper(string A, int m, string B, in
     int match = 0, unmatchA = 0, unmatchB = 0;
     if (A[m] == B[n])
         match = longestCommonSubsequenceHelper(A, m - 1, B, n - 1, len + 1);
-    unmatchA = longestCommonSubsequenceHelper(A, m, B, n - 1, len);
-    unmatchB = longestCommonSubsequenceHelper(A, m - 1, B, n, len);
+    else {
+        unmatchA = longestCommonSubsequenceHelper(A, m, B, n - 1, len);
+        unmatchB = longestCommonSubsequenceHelper(A, m - 1, B, n, len);
+    }
 
     int res = max(match, max(unmatchA, unmatchB));
-
     return max(len, res);
+}
+
+int StringMatching::longestCommonSubsequenceDP(string A, string B) {
+    int m = A.size(), n = B.size(), res = 0;
+    vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+    for (int i = 1; i <= m; ++i)
+        for (int j = 1; j <= n; ++j) {
+            if (A[i - 1] == B[j - 1])
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            else
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            res = max(res, dp[i][j]);
+        }
+    return res;
 }

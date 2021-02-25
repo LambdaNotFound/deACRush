@@ -40,7 +40,6 @@ public:
 public:
     vector<int> inorderTraversalMorris(TreeNode* root);
 
-
 /*
  * 145. Binary Tree Postorder Traversal
  * [L, R, root]
@@ -53,6 +52,17 @@ public:
 
 public:
     vector<int> postorderTraversal2(TreeNode* root); // insert
+
+/*
+ * 230. Kth Smallest Element in a BST
+ *
+ * Follow up:
+What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine? <= store count of children in each node.
+ *
+ * i. BST InorderTraversal
+ */
+public:
+    int kthSmallest(TreeNode* root, int k);
 };
 
 #endif //ACRUSH_TREETRAVERSAL_H
