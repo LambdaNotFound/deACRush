@@ -15,6 +15,14 @@ class GraphTraversal {
  */
 
 /*
+ * 419. Battleships in a Board
+ *
+ * i. trick
+ */
+public:
+    int countBattleships(vector<vector<char>>& board);
+
+/*
  * 200 Number of Islands
  */
 public:

@@ -7,9 +7,9 @@ using namespace std;
 
 class StringMatching {
 /**
- * String Matching
- * Longest Common Substring
- * Longest Common Subsequence
+ * String Matching 28
+ * Longest Common Substring 718
+ * Longest Common Subsequence 1143
  */
 
 /*
@@ -41,6 +41,9 @@ public:
 private:
     int findLengthHelper(vector<int>& A, int m, vector<int>& B, int n, int res);
 
+public:
+    int findLengthDP(vector<int>& A, vector<int>& B);
+
 /*
  * 1143. Longest Common Subsequence
  *
@@ -52,6 +55,13 @@ public:
     int longestCommonSubsequence(string A, string B);
 private:
     int longestCommonSubsequenceHelper(string A, int m, string B, int n, int len);
+
+public:
+    int longestCommonSubsequenceDP(string A, string B);
+
+/**
+ * Palindromes
+ */
 
 };
 

@@ -3,6 +3,17 @@
 
 #include "../ModernCpp/Wargame.h"
 
+TEST(Facebook2015, SortNumberAsString) {
+    vector<int> input = { 1510, 5710, 358 };
+    vector<int> expected = { 1510, 358, 5710};
+
+    sort(input.begin(), input.end(), [](int a, int b){
+        return to_string(a) < to_string(b);
+    });
+
+    EXPECT_EQ(input, expected);
+}
+
 TEST(Wayfair0221, StringSanitizing) {
     string input = "1,2,3,4,5";
     string token = ",";

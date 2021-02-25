@@ -142,3 +142,21 @@ vector<int> TreeTraversal::postorderTraversal2(TreeNode* root) {
 
     return res;
 }
+
+// 230. Kth Smallest Element in a BST
+int TreeTraversal::kthSmallest(TreeNode* root, int k) {
+    TreeNode* p = root;
+    stack<TreeNode*> s;
+    while (!s.empty() || p) {
+        if (p) {
+            s.push(p);
+            p = p->left;
+        } else {
+            p = s.top(); s.pop();
+            if (--k == 0)
+                return p->val;
+            p = p->right;
+        }
+    }
+    return INT_MAX;
+}
