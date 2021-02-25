@@ -92,6 +92,22 @@ void Tree::isSubtreeSerializeHelper(TreeNode* node, ostringstream& os) {
 }
 
 // 114. Flatten Binary Tree to Linked List
+void Tree::flatten(TreeNode *root) {
+    if (!root)
+        return;
+    if (root->left) // flatten left or right first doesn't matter
+        flatten(root->left);
+    if (root->right)
+        flatten(root->right);
+
+    TreeNode *tmp = root->right;
+    root->right = root->left;
+    root->left = nullptr;
+    while (root->right)
+        root = root->right;
+    root->right = tmp;
+}
+
 void flatten(TreeNode *root) {
     TreeNode *cur = root;
     while (cur) {
@@ -107,18 +123,23 @@ void flatten(TreeNode *root) {
     }
 }
 
-void Tree::flatten(TreeNode *root) {
-    if (!root)
-        return;
-    if (root->left)
-        flatten(root->left);
-    if (root->right)
-        flatten(root->right);
+void flattenWithStack(TreeNode *root) {
+    vector<TreeNode*> preorder;
+    stack<TreeNode*> s;
+    TreeNode* p = root;
+    while (!s.empty() || p) {
+        if (p) {
+            preorder.push_back(p);
+            s.push(p);
+            p = p->left;
+        } else {
+            p = s.top(); s.pop();
+            p = p->right;
+        }
+    }
 
-    TreeNode *tmp = root->right;
-    root->right = root->left;
-    root->left = nullptr;
-    while (root->right)
-        root = root->right;
-    root->right = tmp;
+    for (int i = 0; i < preorder.size(); ++i) {
+        preorder[i]->left = nullptr;
+        preorder[i]->right = (i == preorder.size() - 1 ? nullptr : preorder[i + 1]);
+    }
 }
