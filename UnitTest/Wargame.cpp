@@ -1,6 +1,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
+#include "../Design/Read4.h"
 #include "../ModernCpp/Wargame.h"
 
 TEST(Facebook2015, SortNumberAsString) {

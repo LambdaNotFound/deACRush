@@ -66,3 +66,45 @@ vector<int> TwoPointers::twoSumBinarySearch(vector<int>& numbers, int target) {
     }
     return {};
 }
+
+// 68. Text Justification
+vector<string> TwoPointers::fullJustify(vector<string>& words, int maxWidth) {
+    vector<string> res;
+    int start = 0;
+    while (start < words.size()) {
+        int end = start, len = 0;
+        while (end < words.size() && len + words[end].size() + end - start <= maxWidth) {
+            len += words[end++].size();
+        }
+
+        string out;
+        int space = maxWidth - len;
+        for (int current = start; current < end; ++current) {
+            out += words[current];
+            if (space > 0) {
+                int tmp;
+                if (end == words.size()) {
+                    if (end - current == 1)
+                        tmp = space;
+                    else
+                        tmp = 1;
+                } else {
+                    if (end - current - 1 > 0) {
+                        if (space % (end - current - 1) == 0)
+                            tmp = space / (end - current - 1);
+                        else
+                            tmp = space / (end - current - 1) + 1;
+                    } else
+                        tmp = space;
+                }
+
+                out.append(tmp, ' ');
+                space -= tmp;
+            }
+        }
+        res.push_back(out);
+
+        start = end;
+    }
+    return res;
+}
