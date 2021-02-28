@@ -102,6 +102,33 @@ public:
     int minDistanceOptimized(string word1, string word2);
 
 /*
+ * 87. Scramble String
+ *
+ * a).
+ * s1 [0, ... k - 1, k, ... n - 1]
+ *            |
+ * s2 [0, ... k - 1, k, ... n - 1]
+ *
+ * b).
+ * s1 [0, ... k - 1,         k, ... n - 1]
+ *                      \
+ * s2 [0, ... n - k - 1, n - k, ... n - 1]
+ *
+ *    dp[i][j][k] stores if substrings start at i/j are scramble split with length k:
+ *
+ *    dp[i][j][1] = s1[i] == s2[j];
+ *    a). dp[i][j][k] = dp[i][j][k] && dp[i + k][j + k][len - k])
+ *    b). dp[i + k][j][len - k] && dp[i][j + len - k][k]
+ */
+public:
+    bool isScramble(string s1, string s2);
+
+public:
+    bool isScrambleRecursive(string s1, string s2);
+private:
+    bool isScrambleRecursiveHelper(string& s1, string& s2, unordered_map<string, bool>& memo);
+
+/*
  * 139. Word Break
  *
  *    dp[i] stores if substring ends at i - 1 has a valid sequence:

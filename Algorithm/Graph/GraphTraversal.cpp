@@ -1,5 +1,69 @@
 #include "GraphTraversal.h"
 
+// 207. Course Schedule
+bool GraphTraversal::canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+    vector<int> res;
+    vector<vector<int> > adjacencyList(numCourses, vector<int>(0));
+    vector<int> edgeIn(numCourses, 0);
+    for (auto& a : prerequisites) {
+        adjacencyList[a[1]].push_back(a[0]);
+        ++edgeIn[a[0]];
+    }
+
+    queue<int> q;
+    for (int i = 0; i < numCourses; ++i)
+        if (edgeIn[i] == 0)
+            q.push(i);
+
+    while (!q.empty()) {
+        int tmp = q.front(); q.pop();
+        res.push_back(tmp);
+
+        for (auto& a : adjacencyList[tmp]) {
+            --edgeIn[a];
+            if (edgeIn[a] == 0)
+                q.push(a);
+        }
+    }
+
+    if (res.size() != numCourses)
+        res.clear();
+
+    return res.size() == numCourses;
+}
+
+// 210. Course Schedule II
+vector<int> GraphTraversal::findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+    vector<int> res;
+    vector<vector<int> > adjacencyList(numCourses, vector<int>(0));
+    vector<int> edgeIn(numCourses, 0);
+    for (auto& a : prerequisites) {
+        adjacencyList[a[1]].push_back(a[0]);
+        ++edgeIn[a[0]];
+    }
+
+    queue<int> q;
+    for (int i = 0; i < numCourses; ++i)
+        if (edgeIn[i] == 0)
+            q.push(i);
+
+    while (!q.empty()) {
+        int tmp = q.front(); q.pop();
+        res.push_back(tmp);
+
+        for (auto& a : adjacencyList[tmp]) {
+            --edgeIn[a];
+            if (edgeIn[a] == 0)
+                q.push(a);
+        }
+    }
+
+    if (res.size() != numCourses)
+        res.clear();
+
+    return res;
+}
+
 // 419. Battleships in a Board
 int GraphTraversal::countBattleships(vector<vector<char>>& board) {
     if (board.empty())
