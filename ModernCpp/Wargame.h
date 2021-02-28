@@ -69,7 +69,7 @@ void findSource(const vector<pair<int, int>>& edges, vector<int>& sourceNodes) {
     }
 
     for (auto& p : edgesIn) {
-        if (p.second == 0);
+        if (p.second == 0)
             sourceNodes.push_back(p.first);
     }
 }
@@ -90,7 +90,7 @@ bool hasCommonAncestor(const vector<pair<int, int>>& edges, int v1, int v2) {
             int current = q.front(); q.pop();
             for (auto& n : adjencyList[current]) {
                 visited.insert(n);
-                q.push(v);
+                q.push(n);
             }
         }
 
