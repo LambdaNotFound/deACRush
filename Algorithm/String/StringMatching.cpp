@@ -51,18 +51,41 @@ int StringMatching::findLengthBruteForce(vector<int>& A, vector<int>& B) {
     int m = A.size(), n = B.size(), res = 0;
     for (int offset = 0; offset < m; ++offset) {
         for (int i = offset, j = 0; i < m && j < n;) {
-            int cnt = 0;
+            int count = 0;
             while (i < m && j < n && A[i++] == B[j++])
-                ++cnt;
-            res = max(res, cnt);
+                ++count;
+            res = max(res, count);
         }
     }
     for (int offset = 0; offset < n; ++offset) {
         for (int i = 0, j = offset; i < m && j < n;) {
-            int cnt = 0;
+            int count = 0;
             while (i < m && j < n && A[i++] == B[j++])
-                ++cnt;
-            res = max(res, cnt);
+                ++count;
+            res = max(res, count);
+        }
+    }
+    return res;
+}
+
+int findLengthBruteForce2(vector<int>& A, vector<int>& B) {
+    int m = A.size(), n = B.size(), res = 0;
+    for (int offsetA = 0; offsetA < m; ++offsetA) {
+        for (int offsetB = 0; offsetA < m && offsetB < n; ++offsetB) {
+            int i = offsetA, j = offsetB, count = 0;
+            while (i < m && j < n && A[i++] == B[j++]) {
+                ++count;
+                res = max(res, count);
+            }
+        }
+    }
+    for (int offsetB = 0; offsetB < n; ++offsetB) {
+        for (int offsetA = 0; offsetA < m && offsetB < n; ++offsetA) {
+            int i = offsetA, j = offsetB, count = 0;
+            while (i < m && j < n && A[i++] == B[j++]) {
+                ++count;
+                res = max(res, count);
+            }
         }
     }
     return res;

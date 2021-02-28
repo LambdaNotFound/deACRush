@@ -162,6 +162,71 @@ int DynamicProgramming::minDistanceOptimized(string word1, string word2) {
     return dp[n];
 }
 
+// 87. Scramble String
+bool DynamicProgramming::isScramble(string s1, string s2) {
+    if (s1.size() != s2.size()) return false;
+    if (s1 == s2) return true;
+    int n = s1.size();
+    vector<vector<vector<bool> > > dp(n, vector<vector<bool> >(n, vector<bool>(n + 1)));
+    for (int len = 1; len <= n; ++len) {
+        for (int i = 0; i <= n - len; ++i) {
+            for (int j = 0; j <= n - len; ++j) {
+                if (len == 1) {
+                    dp[i][j][1] = s1[i] == s2[j];
+                } else {
+                    for (int k = 1; k < len; ++k) {
+                        if ((dp[i][j][k] && dp[i + k][j + k][len - k]) || (dp[i + k][j][len - k] && dp[i][j + len - k][k])) {
+                            dp[i][j][len] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return dp[0][0][n];
+}
+
+bool DynamicProgramming::isScrambleRecursive(string s1, string s2) {
+    unordered_map<string, bool> memo;
+    return isScrambleRecursiveHelper(s1, s2, memo);
+}
+bool DynamicProgramming::isScrambleRecursiveHelper(string& s1, string& s2, unordered_map<string, bool>& memo) {
+    string key = s1 + " " + s2;
+    if (memo[key])
+        return memo[key];
+
+    if (s1.size() != s2.size()) {
+        memo[key] = false;
+        return false;
+    }
+
+    if (s1 == s2) {
+        memo[key] = true;
+        return true;
+    }
+
+    for (int k = 1; k < s1.size(); ++k) {
+        string s1substr1st = s1.substr(0, k);
+        string s2substr1st = s2.substr(0, k);
+        string s1substr2nd = s1.substr(k);
+        string s2substr2nd = s2.substr(k);
+        if (isScrambleRecursiveHelper(s1substr1st, s2substr1st, memo) && isScrambleRecursiveHelper(s1substr2nd, s2substr2nd, memo)) {
+            memo[key] = true;
+            return true;
+        }
+
+        s2substr1st = s2.substr(s2.size() - k);
+        s2substr2nd = s2.substr(0, s2.size() - k);
+        if (isScrambleRecursiveHelper(s1substr1st, s2substr1st, memo) && isScrambleRecursiveHelper(s1substr2nd, s2substr2nd, memo)) {
+            memo[key] = true;
+            return true;
+        }
+    }
+
+    memo[key] = false;
+    return false;
+}
+
 // 139. Word Break
 bool DynamicProgramming::wordBreak(string s, vector<string>& wordDict) {
     int n = s.size();
