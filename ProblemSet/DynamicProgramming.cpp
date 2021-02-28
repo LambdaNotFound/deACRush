@@ -3,7 +3,7 @@
 // 5. Longest Palindromic Substring
 string DynamicProgramming::longestPalindrome(string s) {
     int start = 0, len = 1, n = s.size();
-    vector<vector<bool>> dp(n, vector<bool>(n));
+    vector<vector<bool> > dp(n, vector<bool>(n));
     for (int j = 1; j < s.size(); ++j) {
         dp[j][j] = true;
         for (int i = 0; i < j; ++i) {
@@ -23,7 +23,7 @@ string DynamicProgramming::longestPalindrome(string s) {
 // 10. Regular Expression Matching
 bool DynamicProgramming::isMatch(string s, string p) {
     int m = s.size(), n = p.size();
-    vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+    vector<vector<bool> > dp(m + 1, vector<bool>(n + 1, false));
     dp[0][0] = true;
     for (int i = 0; i <= m; ++i)
         for (int j = 1; j <= n; ++j)
@@ -69,7 +69,7 @@ bool DynamicProgramming::isMatchRecursive(string s, string p) {
 // 44. Wildcard Matching
 bool DynamicProgramming::isWildcardMatch(string s, string p) {
     int m = s.size(), n = p.size();
-    vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+    vector<vector<bool> > dp(m + 1, vector<bool>(n + 1, false));
 
     dp[0][0] = true;
     for (int j = 1; j <= n; ++j)
@@ -227,6 +227,29 @@ bool DynamicProgramming::isScrambleRecursiveHelper(string& s1, string& s2, unord
     return false;
 }
 
+// 97. Interleaving String
+bool DynamicProgramming::isInterleave(string s1, string s2, string s3) {
+    if (s1.size() + s2.size() != s3.size())
+        return false;
+
+    int m = s1.size(), n = s2.size();
+    vector<vector<bool> > dp(m + 1, vector<bool> (n + 1));
+    dp[0][0] = true;
+    for (int i = 1; i <= m; ++i) {
+        dp[i][0] = dp[i - 1][0] && (s1[i - 1] == s3[i - 1]);
+    }
+    for (int i = 1; i <= n; ++i) {
+        dp[0][i] = dp[0][i - 1] && (s2[i - 1] == s3[i - 1]);
+    }
+    for (int i = 1; i <= m; ++i) {
+        for (int j = 1; j <= n; ++j) {
+            dp[i][j] = (dp[i - 1][j] && s1[i - 1] == s3[i - 1 + j]) || (dp[i][j - 1] && s2[j - 1] == s3[j - 1 + i]);
+        }
+    }
+
+    return dp[m][n];
+}
+
 // 139. Word Break
 bool DynamicProgramming::wordBreak(string s, vector<string>& wordDict) {
     int n = s.size();
@@ -250,10 +273,10 @@ bool DynamicProgramming::wordBreak(string s, vector<string>& wordDict) {
 
 // 140. Word Break II
 vector<string> DynamicProgramming::wordBreakII(string s, vector<string>& wordDict) {
-    unordered_map<string, vector<string>> memo;
+    unordered_map<string, vector<string> > memo;
     return wordBreakIIHelper(s, wordDict, memo);
 }
-vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& wordDict, unordered_map<string, vector<string>>& memo) {
+vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& wordDict, unordered_map<string, vector<string> >& memo) {
     if (memo.count(s))
         return memo[s];
     if (s.empty())
@@ -275,7 +298,7 @@ vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& 
 }
 
 /*
-vector<string> wordBreakII(string s, vector<string>& wordDict) {
+   vector<string> wordBreakII(string s, vector<string>& wordDict) {
     int n = s.size();
     unordered_set<string> dict(wordDict.cbegin(), wordDict.cend());
     set<int> wordSizes;
@@ -300,7 +323,7 @@ vector<string> wordBreakII(string s, vector<string>& wordDict) {
     }
 
     return dp[n];
-}
+   }
  */
 
 // 70. Climbing Stairs

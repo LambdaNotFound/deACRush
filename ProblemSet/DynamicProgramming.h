@@ -129,6 +129,15 @@ private:
     bool isScrambleRecursiveHelper(string& s1, string& s2, unordered_map<string, bool>& memo);
 
 /*
+ * 97. Interleaving String
+ *
+ *    dp[i][j] stores if s1[0, i - 1] and s2[0, j - 1] can form the interleaving string s3[0, i + j - 1]
+ *    dp[i][j] = (dp[i - 1][j] && s1[i - 1] == s3[i - 1 + j]) || (dp[i][j - 1] && s2[j - 1] == s3[j - 1 + i]);
+ */
+public:
+    bool isInterleave(string s1, string s2, string s3);
+
+/*
  * 139. Word Break
  *
  *    dp[i] stores if substring ends at i - 1 has a valid sequence:
