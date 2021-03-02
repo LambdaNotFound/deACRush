@@ -3,7 +3,7 @@
 // 5. Longest Palindromic Substring
 string DynamicProgramming::longestPalindrome(string s) {
     int start = 0, len = 1, n = s.size();
-    vector<vector<bool>> dp(n, vector<bool>(n));
+    vector<vector<bool> > dp(n, vector<bool>(n));
     for (int j = 1; j < s.size(); ++j) {
         dp[j][j] = true;
         for (int i = 0; i < j; ++i) {
@@ -23,7 +23,7 @@ string DynamicProgramming::longestPalindrome(string s) {
 // 10. Regular Expression Matching
 bool DynamicProgramming::isMatch(string s, string p) {
     int m = s.size(), n = p.size();
-    vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+    vector<vector<bool> > dp(m + 1, vector<bool>(n + 1, false));
     dp[0][0] = true;
     for (int i = 0; i <= m; ++i)
         for (int j = 1; j <= n; ++j)
@@ -69,7 +69,7 @@ bool DynamicProgramming::isMatchRecursive(string s, string p) {
 // 44. Wildcard Matching
 bool DynamicProgramming::isWildcardMatch(string s, string p) {
     int m = s.size(), n = p.size();
-    vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+    vector<vector<bool> > dp(m + 1, vector<bool>(n + 1, false));
 
     dp[0][0] = true;
     for (int j = 1; j <= n; ++j)
@@ -250,10 +250,10 @@ bool DynamicProgramming::wordBreak(string s, vector<string>& wordDict) {
 
 // 140. Word Break II
 vector<string> DynamicProgramming::wordBreakII(string s, vector<string>& wordDict) {
-    unordered_map<string, vector<string>> memo;
+    unordered_map<string, vector<string> > memo;
     return wordBreakIIHelper(s, wordDict, memo);
 }
-vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& wordDict, unordered_map<string, vector<string>>& memo) {
+vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& wordDict, unordered_map<string, vector<string> >& memo) {
     if (memo.count(s))
         return memo[s];
     if (s.empty())
@@ -275,7 +275,7 @@ vector<string> DynamicProgramming::wordBreakIIHelper(string& s, vector<string>& 
 }
 
 /*
-vector<string> wordBreakII(string s, vector<string>& wordDict) {
+   vector<string> wordBreakII(string s, vector<string>& wordDict) {
     int n = s.size();
     unordered_set<string> dict(wordDict.cbegin(), wordDict.cend());
     set<int> wordSizes;
@@ -300,7 +300,7 @@ vector<string> wordBreakII(string s, vector<string>& wordDict) {
     }
 
     return dp[n];
-}
+   }
  */
 
 // 70. Climbing Stairs
