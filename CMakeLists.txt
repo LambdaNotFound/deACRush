@@ -31,8 +31,10 @@ add_executable(acrush main.cpp)
 set(SOURCE_CORE
     include/Utility.cpp
     Algorithm/Search/BinarySearch.cpp
+    Algorithm/String/StringMatching.cpp
     # Algorithm/ComputationalGeometry/SweepLine.cpp
     # Algorithm/DivideAndConquer/DivideAndConquer.cpp
+    Algorithm/Graph/GraphTraversal.cpp
     Algorithm/Graph/TreeTraversal.cpp
     # Algorithm/Graph/UnionFind.cpp
     # Algorithm/RandomizedAlgorithm/RandomizedAlgorithm.cpp
@@ -105,6 +107,7 @@ set(SOURCE_TESTS
     UnitTest/Monotone.cpp
     UnitTest/SlidingWindow.cpp
     UnitTest/Tree.cpp
+    UnitTest/Wargame.cpp
     # UnitTest/ProblemSetTest/LinkedListTest.cpp
     # UnitTest/ProblemSetTest/MatrixTest.cpp
     # UnitTest/ProblemSetTest/StackTest.cpp

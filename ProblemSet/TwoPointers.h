@@ -31,6 +31,25 @@ public:
 public:
     vector<int> twoSumBinarySearch(vector<int>& numbers, int target);
 
+/**
+ * Other
+ */
+
+/*
+ * 68. Text Justification
+ *
+ * Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
+ * Output:
+ * [
+ * "This    is    an",
+ * "example  of text",
+ * "justification.  "
+ * ]
+ *
+ */
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth);
+
 };
 
 #endif //ACRUSH_TWOPOINTERS_H
