@@ -47,6 +47,33 @@ public:
         unordered_map<int, int> hashMap;
     };
 
+/*
+ * 1570. Dot Product of Two Sparse Vectors
+ */
+class SparseVector {
+public:
+    SparseVector(vector<int> &nums) {
+        for (int i = 0; i < nums.size(); ++i)
+            indexToNum[i] = nums[i];
+    }
+
+    // Return the dotProduct of two sparse vectors
+    int dotProduct(SparseVector& vec) {
+        if (vec.indexToNum.size() < indexToNum.size())
+            vec.dotProduct(*this);
+
+        int res = 0;
+        for (const auto& [index, num] : indexToNum)
+            res += num * vec.indexToNum[index];
+
+        return res;
+    }
+
+private:
+    unordered_map<int, int> indexToNum;
+};
+
+
 /**
  * HashSet, deduplicate
  *
