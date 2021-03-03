@@ -52,8 +52,20 @@ private:
 public:
     int lengthOfLISDP(vector<int>& nums);
 
+/*
+ * 1428. Leftmost Column with at Least a One
+ *
+ * A row-sorted binary matrix means that all elements are 0 or 1 and each row of the matrix is sorted in non-decreasing order.
+ * Given a row-sorted binary matrix binaryMatrix, return the index (0-indexed) of the leftmost column with a 1 in it. If such an index does not exist, return -1.
+ */
+class BinaryMatrix {
+public:
+    int get(int row, int col) { return 0; }
+    vector<int> dimensions() { return {}; }
+};
 
-
+public:
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix);
 };
 
 #endif //ACRUSH_BINARYSEARCH_H

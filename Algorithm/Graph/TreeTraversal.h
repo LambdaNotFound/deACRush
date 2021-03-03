@@ -5,6 +5,7 @@
 
 using namespace std;
 
+class Node;
 struct TreeNode;
 
 class TreeTraversal {
@@ -63,6 +64,22 @@ What if the BST is modified (insert/delete operations) often and you need to fin
  */
 public:
     int kthSmallest(TreeNode* root, int k);
+
+
+
+/**
+ * Recursive approach
+ *
+ * LCA: Lowest Common Ancestor
+ */
+
+/*
+ * 1650. Lowest Common Ancestor of a Binary Tree III
+ */
+public:
+    Node* lowestCommonAncestor(Node* p, Node * q);
+private:
+    Node* LCAHelper(Node* root, Node* p, Node* q);
 };
 
 #endif //ACRUSH_TREETRAVERSAL_H

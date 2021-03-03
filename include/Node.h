@@ -10,6 +10,8 @@ public:
     Node* left;
     Node* right;
     Node* next; // tree node to linked list node
+    Node* random; // linked list node with random pointer
+    Node* parent;
 
     vector<Node*> neighbors; // graph node
 

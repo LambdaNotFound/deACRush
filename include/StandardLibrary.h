@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <assert.h>
+#include <limits>
 
 #include <cstring>
 #include <climits>

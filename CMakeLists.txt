@@ -64,7 +64,7 @@ set(SOURCE_CORE
     ProblemSet/MathTricks.cpp
     ProblemSet/Monotone.cpp
     # ProblemSet/Iterator.cpp
-    # ProblemSet/LinkedList.cpp
+    ProblemSet/LinkedList.cpp
     # ProblemSet/Math.cpp
     # ProblemSet/Matrix.cpp
     # ProblemSet/Merge.cpp

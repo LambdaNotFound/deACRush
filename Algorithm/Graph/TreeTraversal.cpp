@@ -1,5 +1,6 @@
 #include "TreeTraversal.h"
 
+#include "Node.h"
 #include "TreeNode.h"
 
 // 144. Binary Tree Preorder Traversal
@@ -159,4 +160,28 @@ int TreeTraversal::kthSmallest(TreeNode* root, int k) {
         }
     }
     return INT_MAX;
+}
+
+// 1650. Lowest Common Ancestor of a Binary Tree III
+Node* TreeTraversal::lowestCommonAncestor(Node* p, Node * q) {
+    Node* root = p;
+    while (root->parent)
+        root = root->parent;
+
+    return LCAHelper(root, p, q);
+}
+Node* TreeTraversal::LCAHelper(Node* root, Node* p, Node* q) {
+    if (!root)
+        return nullptr;
+
+    if (root->val == p->val || root->val == q->val)
+        return root;
+
+    Node* left = LCAHelper(root->left, p, q);
+    Node* right = LCAHelper(root->right, p, q);
+
+    if (left && right)
+        return root;
+
+    return left ? left : right;
 }

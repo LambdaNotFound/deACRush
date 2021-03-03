@@ -112,3 +112,24 @@ int BinarySearch::lengthOfLISDP(vector<int>& nums) {
 
     return res;
 }
+
+// 1428. Leftmost Column with at Least a One
+int BinarySearch::leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+    vector<int> dimensions = binaryMatrix.dimensions();
+    int m = dimensions[0], n = dimensions[1], res = n;
+
+    for (int i = 0; i < m; ++i) {
+        int left = 0, right = res;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int val = binaryMatrix.get(i, mid);
+            if (val == 1) {
+                right = mid;
+                res = right;
+            } else
+                left = mid + 1;
+        }
+    }
+
+    return res == n ? -1 : res;
+}

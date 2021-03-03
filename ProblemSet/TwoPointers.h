@@ -31,6 +31,12 @@ public:
 public:
     vector<int> twoSumBinarySearch(vector<int>& numbers, int target);
 
+/*
+ * 1574. Shortest Subarray to be Removed to Make Array Sorted
+ */
+public:
+    int findLengthOfShortestSubarray(vector<int>& arr);
+
 /**
  * Other
  */

@@ -67,6 +67,29 @@ vector<int> TwoPointers::twoSumBinarySearch(vector<int>& numbers, int target) {
     return {};
 }
 
+// 1574. Shortest Subarray to be Removed to Make Array Sorted
+int TwoPointers::findLengthOfShortestSubarray(vector<int>& arr) {
+    int n = arr.size(), left = 0, right = n - 1;
+    while (left + 1 < n && arr[left] <= arr[left + 1]) // check for OOB
+        ++left;
+    while (right - 1 >= 0 && left <= right && arr[right - 1] <= arr[right])
+        --right;
+    if (left == n - 1)
+        return 0;
+
+    int res = min(n - left - 1, right);
+    for (int i = 0, j = right; i <= left && j < n; ) {
+        if (arr[i] <= arr[j]) {
+            res = min(res, j - i - 1); // [i + 1, j - 1] is the sliding window
+            ++i; // tight left
+        }
+        else
+            ++j; // loose right
+    }
+
+    return res;
+}
+
 // 68. Text Justification
 vector<string> TwoPointers::fullJustify(vector<string>& words, int maxWidth) {
     vector<string> res;
