@@ -70,7 +70,7 @@ set(SOURCE_CORE
     # ProblemSet/Merge.cpp
     # ProblemSet/Scheduling.cpp
     # ProblemSet/Set.cpp
-    # ProblemSet/Stack.cpp
+    ProblemSet/Stack.cpp
     # ProblemSet/String.cpp
     ProblemSet/SlidingWindow.cpp
     ProblemSet/Tree.cpp

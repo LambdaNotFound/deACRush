@@ -27,6 +27,18 @@ public:
     string longestPalindromeOptimized(string s);
 
 /*
+ * 132. Palindrome Partitioning II
+ *
+ * i. DP x 2
+ *    dp1[i][j] stores if substring s[i, j] is palindromic
+ *    dp2[i] stores min cut at i
+ *
+ *    init: dp2[i] = i as single char is palindromic
+ */
+public:
+    int minCut(string s);
+
+/*
  * 10. Regular Expression Matching
  *
  * Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*' where:
