@@ -20,6 +20,27 @@ string DynamicProgramming::longestPalindrome(string s) {
     return s.substr(start, len);
 }
 
+// 132. Palindrome Partitioning II
+int DynamicProgramming::minCut(string s) {
+    if (s.empty())
+        return 0;
+
+    int n = s.size();
+    vector<vector<bool>> dp1(n, vector<bool>(n));
+    vector<int> dp2(n);
+    for (int j = 0; j < n; ++j) {
+        dp2[j] = j;
+        for (int i = 0; i <= j; ++i) {
+            dp1[i][j] = (s[j] == s[i] && (j - i <= 2 || dp1[i + 1][j - 1]));
+
+            if (dp1[i][j]) {
+                dp2[j] = (i > 0) ? min(dp2[j], dp2[i - 1] + 1) : 0;
+            }
+        }
+    }
+    return dp2[n - 1];
+}
+
 // 10. Regular Expression Matching
 bool DynamicProgramming::isMatch(string s, string p) {
     int m = s.size(), n = p.size();
