@@ -201,3 +201,16 @@ TEST(Wayfair21, GraphCommonAncestorBFS) {
     res = hasCommonAncestor(parent_child_pairs_2, 1, 6);
     EXPECT_EQ(res, false);
 }
+
+TEST(Uber21, CountSubsegmentsPrefixSum) {
+    vector<int> input{1, 1, 1};
+    int expected = 1;
+
+    int res = countSubsegments(input);
+    EXPECT_EQ(res, expected);
+
+    input = { 1, 2, 2, 2, 5, 0 };
+    expected = 3;
+    res = countSubsegments(input);
+    EXPECT_EQ(res, expected);
+}

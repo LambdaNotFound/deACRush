@@ -53,19 +53,18 @@ vector<string> findContiguousHistory(vector<string>& s1, vector<string>& s2) {
     return res;
 }
 
-void buildAdjencyList(const vector<pair<int, int>>& edges, vector<vector<int>>& adjencyList) {
-    for (auto& p : edges) {
-        adjencyList[p.first].push_back(p.second);
+void buildAdjList(const vector<pair<int, int>>& edges, vector<vector<int>>& adjList) {
+    for (auto& e : edges) {
+        adjList[e.first].push_back(e.second);
     }
 }
-
 void findSource(const vector<pair<int, int>>& edges, vector<int>& sourceNodes) {
     unordered_map<int, int> edgesIn;
-    for (auto& p : edges) {
-        ++edgesIn[p.second];
+    for (auto& e : edges) {
+        ++edgesIn[e.second];
 
-        if (!edgesIn.count(p.first))
-            edgesIn[p.first] = 0;
+        if (!edgesIn.count(e.first))
+            edgesIn[e.first] = 0;
     }
 
     for (auto& p : edgesIn) {
@@ -73,11 +72,10 @@ void findSource(const vector<pair<int, int>>& edges, vector<int>& sourceNodes) {
             sourceNodes.push_back(p.first);
     }
 }
-
 bool hasCommonAncestor(const vector<pair<int, int>>& edges, int v1, int v2) {
     int size = 20;
-    vector<vector<int>> adjencyList(size, vector<int>(0));
-    buildAdjencyList(edges, adjencyList);
+    vector<vector<int>> adjList(size, vector<int>(0));
+    buildAdjList(edges, adjList);
 
     vector<int> sourceNodes;
     findSource(edges, sourceNodes);
@@ -87,10 +85,12 @@ bool hasCommonAncestor(const vector<pair<int, int>>& edges, int v1, int v2) {
         unordered_set<int> visited; visited.insert(v);
 
         while (!q.empty()) {
-            int current = q.front(); q.pop();
-            for (auto& n : adjencyList[current]) {
+            int cur = q.front(); q.pop();
+            for (auto& n : adjList[cur]) {
+                if (visited.count(n))
+                    continue;
                 visited.insert(n);
-                q.push(v);
+                q.push(n);
             }
         }
 
@@ -99,6 +99,25 @@ bool hasCommonAncestor(const vector<pair<int, int>>& edges, int v1, int v2) {
     }
 
     return false;
+}
+
+long long countSubsegments(vector<int> arr) {
+    vector<int> prefixSum = arr;
+    for (int i = 1; i < prefixSum.size(); ++i) {
+        prefixSum[i] = arr[i] + prefixSum[i - 1]; // arr[i] + prefixSum[i - 1]
+    }
+
+    int n = arr.size();
+    long long res = 0;
+    for (int j = 1; j + 1 < n; ++j) {
+        for (int i = 0; i < j; ++i) {
+            int first = prefixSum[i], second = prefixSum[j] - prefixSum[i],
+                third = prefixSum.back() - prefixSum[j];
+            if (first <= second && second <= third)
+                ++res;
+        }
+    }
+    return res;
 }
 
 #endif //ACRUSH_WARGAME_H
