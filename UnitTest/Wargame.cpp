@@ -214,3 +214,40 @@ TEST(Uber21, CountSubsegmentsPrefixSum) {
     res = countSubsegments(input);
     EXPECT_EQ(res, expected);
 }
+
+TEST(Uber21, YamlFileParser) {
+
+}
+
+TEST(Uber21, mergeAccount) {
+    vector<vector<int>> idToPhoneNumbers {
+        { 1, 123 },
+        { 2, 234 },
+        { 3, 123, 111 },
+        { 4, 234, 55 },
+        { 5, 4444 }
+    };
+
+    vector<vector<int>> expected {
+        { 1, 3 }, { 111, 123 },
+        { 2, 4 }, { 55, 234 },
+        { 5 }, { 4444 },
+    };
+
+    auto res = mergeAccount(idToPhoneNumbers);
+    EXPECT_EQ(res, expected);
+}
+
+TEST(Facebook21, DotProduct) {
+    vector<int> nums1{ 1, 1, 3, 2, 2, 2, 3 }, nums2{ 5, 1, 3, 3, 3, 3, 2 };
+    vector<vector<int>> compressed1{{ 1, 2 }, { 3, 1 }, { 2, 3 }, { 3, 1 }}, compressed2{{ 5, 1 }, { 1, 1 }, { 3, 4 }, { 2, 1 }};
+
+    auto res1 = compress(nums1);
+    auto res2 = compress(nums2);
+    EXPECT_EQ(res1, compressed1);
+    EXPECT_EQ(res2, compressed2);
+
+    vector<vector<int>> expected{{ 5, 1 }, { 1, 1}, { 9, 1 }, { 6, 4 }};
+    auto res = computeDotProduct(res1, res2);
+    EXPECT_EQ(res, expected);
+}

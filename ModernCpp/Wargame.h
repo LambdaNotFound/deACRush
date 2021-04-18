@@ -68,7 +68,7 @@ void findSource(const vector<pair<int, int>>& edges, vector<int>& sourceNodes) {
     }
 
     for (auto& p : edgesIn) {
-        if (p.second == 0);
+        if (p.second == 0)
             sourceNodes.push_back(p.first);
     }
 }
@@ -117,6 +117,99 @@ long long countSubsegments(vector<int> arr) {
                 ++res;
         }
     }
+    return res;
+}
+
+vector<vector<int>> mergeAccount(vector<vector<int>>& idToPhoneNumbers) {
+    unordered_map<int, vector<int>> idToPhoneNumber;
+    unordered_map<int, vector<int>> phoneNumberToId;
+    map<int, bool> visited;
+    for (auto& v : idToPhoneNumbers) {
+        int id = v[0];
+        visited[id] = false;
+        for (int i = 1; i < v.size(); ++i) {
+            int phoneNumber = v[i];
+            idToPhoneNumber[id].push_back(phoneNumber);
+            phoneNumberToId[phoneNumber].push_back(id);
+        }
+    }
+
+    vector<vector<int>> res;
+    for (auto& p : visited) { // <id, viisted>
+        if (p.second == true)
+            continue;
+
+        queue<int> q; q.push(p.first);
+        visited[p.first] = true;
+        set<int> ids, numbers;
+        while (!q.empty()) {
+            int currId = q.front(); q.pop();
+            ids.insert(currId);
+
+            for (int phoneNumber : idToPhoneNumber[currId]) {
+                numbers.insert(phoneNumber);
+                for (int id : phoneNumberToId[phoneNumber]) {
+                    if (visited[id] == false) {
+                        visited[id] = true;
+                        q.push(id);
+                    }
+                }
+            }
+        }
+        res.push_back(vector<int>(ids.begin(), ids.end()));
+        res.push_back(vector<int>(numbers.begin(), numbers.end()));
+    }
+
+    return res;
+}
+
+vector<vector<int>> compress(vector<int>& nums) {
+    int n = nums.size();
+    vector<vector<int>> res;
+    for (int i = 0; i < n; ) {
+        int j = i, count = 0;
+        while (j < n && nums[j] == nums[i]) {
+            ++j;
+            ++count;
+        }
+        res.push_back({nums[i], count});
+        i = j;
+    }
+    return res;
+}
+
+vector<vector<int>> computeDotProduct(vector<vector<int>>& A, vector<vector<int>>& B) {
+    vector<vector<int>> res;
+    int i = 0, j = 0;
+    while (i < A.size() && j < B.size()) {
+        auto& a = A[i];
+        auto& b = B[j];
+        int product = a[0] * b[0];
+        int count = min(a[1], b[1]);
+
+        a[1] -= count;
+        if (a[1] == 0)
+            ++i;
+
+        b[1] -= count;
+        if (b[1] == 0)
+            ++j;
+
+        if (!res.empty() && res.back()[0] == product) {
+            res.back()[1] += count;
+        } else {
+            res.push_back({ product, count });
+        }
+
+        /*
+        if (res.empty() || res.back()[0] != product) {
+            res.push_back({product, count});
+        } else {
+            res.back()[1] += count;
+        }
+         */
+    }
+
     return res;
 }
 
