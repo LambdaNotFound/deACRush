@@ -213,4 +213,34 @@ vector<vector<int>> computeDotProduct(vector<vector<int>>& A, vector<vector<int>
     return res;
 }
 
+#include <ctime>
+
+pair<time_t, time_t> sellStock(unordered_map<time_t, double> dict) {
+    vector<pair<time_t, double>> vec;
+    for (auto& p : dict) {
+        vec.push_back({p.first, p.second});
+    }
+    sort(vec.begin(), vec.end(),
+        [](auto& a, auto& b) {
+            return a.first < b.first;
+        });
+
+    pair<time_t, time_t> res;
+    double lowest = DBL_MAX, maxGain = 0;
+    int lowestIndex = 0;
+    for (int i = 0; i < vec.size(); ++i) {
+        if (vec[i].second < lowest) {
+            lowestIndex = i;
+            lowest = vec[i].second;
+        }
+
+        if (maxGain < vec[i].second - lowest) {
+            res = {vec[lowestIndex].first, vec[i].first};
+            maxGain = vec[i].second - lowest;
+        }
+    }
+
+    return res;
+}
+
 #endif //ACRUSH_WARGAME_H
