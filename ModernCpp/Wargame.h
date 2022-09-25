@@ -213,6 +213,7 @@ vector<vector<int>> computeDotProduct(vector<vector<int>>& A, vector<vector<int>
     return res;
 }
 
+/*
 #include <ctime>
 
 pair<time_t, time_t> sellStock(unordered_map<time_t, double> dict) {
@@ -242,5 +243,6 @@ pair<time_t, time_t> sellStock(unordered_map<time_t, double> dict) {
 
     return res;
 }
+ */
 
 #endif //ACRUSH_WARGAME_H
